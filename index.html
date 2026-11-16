@@ -1,28 +1,36 @@
 <!doctype html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#FF6B3D"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="English Arena">
-<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="icon.svg">
+<meta name="theme-color" content="#0D1B3D"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Languages Time">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="img/icon-192.png"><link rel="apple-touch-icon" href="img/icon-192.png">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head><body>
-<title>English Arena</title>
+<title>Languages Time Games</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Nunito:wght@400;600;800&display=swap">
 <style>
-/* Layout: one-column classroom app; big tappable tiles; single bright "chalk-and-sticker" look in both themes */
-:root{--bg:#EAF4F1;--card:#FFFFFF;--ink:#12324A;--mute:#5B7385;--line:#CFE2DC;--coral:#FF6B3D;--leaf:#22A56A;--sun:#FFC845;--sky:#2F8FEA;--grape:#8A5CF0;--bad:#D93A3A;
---disp:"Baloo 2","Trebuchet MS",system-ui,sans-serif;--body:"Nunito","Segoe UI",system-ui,sans-serif;color-scheme:light}
+/* Layout: one-column classroom app; navy brand band with mascot; big tappable tiles; single brand look (Languages Time: navy / teal / golden / white) */
+:root{--bg:#F7F8FA;--card:#FFFFFF;--ink:#0D1B3D;--mute:#56657F;--line:#D6DEE7;--coral:#F4B23A;--leaf:#1F9D6B;--sun:#F4B23A;--sky:#2A6F84;--grape:#1E3566;--bad:#D6453D;--navy:#0D1B3D;--teal:#2A6F84;--gold:#F4B23A;--tint:#E6F0F3;
+--disp:"Montserrat","Trebuchet MS",system-ui,sans-serif;--body:"Nunito","Segoe UI",system-ui,sans-serif;color-scheme:light}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
 .wrap{max-width:980px;margin:0 auto;padding-block:16px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1,h2,h3{font-family:var(--disp);line-height:1.15;margin:0;text-wrap:balance}
 h1{font-size:2rem}h2{font-size:1.5rem}h3{font-size:1.15rem}
 header.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
-.logo{font-family:var(--disp);font-weight:800;font-size:1.6rem;color:var(--ink);cursor:pointer}
-.logo b{color:var(--coral)}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;font-family:var(--disp);font-weight:900;font-size:1.25rem;letter-spacing:.04em;color:var(--navy);line-height:1}
+.logo img{width:52px;height:52px}.logo small{display:block;font-size:.62rem;letter-spacing:.18em;color:var(--teal);margin-top:4px}
+.brandband{position:relative;background:var(--navy);color:#fff;border-radius:22px;padding:22px 22px 22px;overflow:hidden;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end;margin-bottom:16px;min-height:200px}
+.brandband::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;border:2px solid var(--teal);opacity:.6}
+.brandband h1{color:#fff;font-size:clamp(1.5rem,4.5vw,2.3rem);font-weight:900}.brandband h1 em{font-style:normal;color:var(--gold)}
+.brandband p{color:#C9D6E6;margin:8px 0 14px;max-width:46ch}
+.brandband .masc{width:clamp(120px,24vw,200px);position:relative;z-index:1;margin-bottom:-22px}
+.bubble{position:absolute;right:clamp(110px,22vw,190px);top:18px;background:#fff;color:var(--navy);font-weight:800;border-radius:16px;padding:6px 12px;font-size:.85rem;z-index:2}
+@media(max-width:520px){.bubble{display:none}}
+.mascot-sm{width:84px;display:block;margin:0 auto 6px}
 nav.tabs{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
 button,.btn{font:800 0.95rem var(--body);border:2px solid var(--ink);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 14px;cursor:pointer;box-shadow:0 3px 0 var(--ink);transition:transform .08s}
 button:active{transform:translateY(2px);box-shadow:0 1px 0 var(--ink)}
 button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
-button.pri{background:var(--coral);color:#fff}button.ok{background:var(--leaf);color:#fff}button.no{background:var(--bad);color:#fff}button.sun{background:var(--sun)}
+button.pri{background:var(--gold);color:var(--navy)}button.ok{background:var(--leaf);color:#fff}button.no{background:var(--bad);color:#fff}button.sun{background:var(--sun)}
 button.ghost{box-shadow:none;border-color:var(--line)}
 button.on{background:var(--ink);color:#fff}
 button:disabled{opacity:.45;cursor:default}
@@ -38,8 +46,22 @@ label{font-weight:800;font-size:.85rem;letter-spacing:.03em;color:var(--mute);di
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:6px}
 @media(max-width:640px){.hero{grid-template-columns:1fr}}
 .hero .panel{display:flex;flex-direction:column;gap:8px}
-.hero .a{background:var(--sun);border-color:var(--ink)}.hero .b{background:var(--sky);color:#fff;border-color:var(--ink)}
-.hero .b .muted{color:#E6F2FF}
+.hero .a{background:var(--tint);border-color:var(--teal)}.hero .b{background:var(--teal);color:#fff;border-color:var(--navy)}
+.hero .b .muted{color:#DCEEF3}
+.qimg{display:block;max-width:100%;max-height:42vh;margin:0 auto 10px;border-radius:14px;border:3px solid var(--navy)}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.thumbs figure{margin:0;text-align:center;font-size:.75rem;font-weight:800}.thumbs img{width:64px;height:64px;object-fit:cover;border-radius:8px;border:2px solid var(--line)}
+/* hot potato */
+.potato{width:min(220px,55vw);aspect-ratio:1;margin:6px auto;position:relative;display:grid;place-items:center}
+.potato .ball{width:78%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFD98A,var(--gold) 45%,#C98512);border:4px solid var(--navy);display:grid;place-items:center;font-family:var(--disp);font-weight:900;font-size:1.3rem;color:var(--navy);animation:wob .5s infinite alternate}
+.potato .fuse{position:absolute;top:2%;right:16%;width:22px;height:34px;border-right:5px solid var(--navy);border-radius:0 30px 0 0}
+.potato .spark{position:absolute;top:-6%;right:9%;width:26px;height:26px;border-radius:50%;background:radial-gradient(#fff,#F4B23A 50%,transparent 70%);animation:sp .18s infinite alternate}
+.potato.hot .ball{animation-duration:.18s;background:radial-gradient(circle at 35% 30%,#FFC2A0,#F07A3A 45%,#B83A1A)}
+@keyframes wob{from{transform:rotate(-6deg) scale(1)}to{transform:rotate(6deg) scale(1.04)}}
+@keyframes sp{to{transform:scale(1.5);opacity:.6}}
+.boom{font-family:var(--disp);font-weight:900;font-size:clamp(2.4rem,10vw,4rem);color:var(--bad);text-align:center;animation:pop .5s}
+@keyframes pop{from{transform:scale(.3)}to{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.potato .ball,.potato .spark,.boom{animation:none}}
+.msg.ai{position:relative;margin-left:44px}.msg.ai::before{content:"";position:absolute;left:-46px;top:0;width:38px;height:38px;border-radius:50%;background:var(--tint) url(img/m1.png) center 8%/150% auto no-repeat;border:2px solid var(--teal)}
 /* game */
 .board{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
 .team{flex:1 1 120px;border:2px solid var(--ink);border-radius:14px;padding:8px 12px;background:var(--card);display:flex;justify-content:space-between;align-items:center;font-weight:800}
@@ -48,7 +70,7 @@ label{font-weight:800;font-size:.85rem;letter-spacing:.03em;color:var(--mute);di
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:10px}
 .tile{aspect-ratio:1;max-width:100%;font-family:var(--disp);font-size:1.7rem;border-radius:16px;color:#fff;padding:0}
 .tile.used{opacity:.18;pointer-events:none}
-.c0{background:var(--coral)}.c1{background:var(--sky)}.c2{background:var(--leaf)}.c3{background:var(--grape)}.c4{background:var(--sun);color:var(--ink)}
+.c0{background:var(--navy)}.c1{background:var(--teal)}.c2{background:var(--gold);color:var(--navy)}.c3{background:#3E8FA6}.c4{background:#1E3566}
 .q-big{font-family:var(--disp);font-size:clamp(1.5rem,5vw,2.4rem);text-align:center;margin:10px 0 16px;overflow-wrap:anywhere}
 .ans{font-family:var(--disp);font-size:clamp(1.3rem,4vw,2rem);color:var(--leaf);text-align:center}
 .pts{display:inline-block;background:var(--sun);border:2px solid var(--ink);border-radius:999px;padding:2px 12px;font-weight:800}
@@ -90,7 +112,7 @@ label{font-weight:800;font-size:.85rem;letter-spacing:.03em;color:var(--mute);di
 
 <div class="wrap">
   <header class="top">
-    <div class="logo" id="go-home">English <b>Arena</b></div>
+    <div class="logo" id="go-home"><img src="img/logo.png" alt="Languages Time logo"><div>LANGUAGES TIME<small>BRAVE B GREAT</small></div></div>
     <nav class="tabs">
       <button class="ghost" data-go="home">Trò chơi</button>
       <button class="ghost" data-go="speak">Luyện nói AI</button>
@@ -100,6 +122,12 @@ label{font-weight:800;font-size:.85rem;letter-spacing:.03em;color:var(--mute);di
 
   <!-- HOME -->
   <section class="view" id="v-home">
+    <div class="brandband">
+      <div style="position:relative;z-index:1"><h1>Let's learn English <em>together!</em></h1><p>Trò chơi lớp học, ôn bài tập và luyện nói cùng AI – cho Kids, Teens, sinh viên và người lớn.</p>
+      <div class="row"><button class="pri" id="new-set2">+ Tạo trò chơi</button><button class="ghost" data-go="speak" style="background:transparent;color:#fff;border-color:#fff">Luyện nói AI</button></div></div>
+      <img class="masc" src="img/mascot.png" alt="Linh vật Languages Time">
+      <div class="bubble">Ready to play?</div>
+    </div>
     <div class="hero">
       <div class="panel a"><h2>Tạo trò chơi từ bài tập</h2><div>Dán câu hỏi, tải file Word / Excel / TXT, hoặc nhờ AI soạn câu hỏi từ tài liệu.</div><div class="row"><button class="pri" id="new-set">+ Bộ câu hỏi mới</button></div></div>
       <div class="panel b"><h2>Trò chuyện với AI</h2><div class="muted">Học viên nói tiếng Anh, AI trả lời, sửa lỗi ngữ pháp và chấm phát âm.</div><div class="row"><button class="sun" data-go="speak">Bắt đầu luyện nói</button></div></div>
@@ -121,6 +149,12 @@ label{font-weight:800;font-size:.85rem;letter-spacing:.03em;color:var(--mute);di
         <label class="btn" for="ed-file" style="margin:0;color:var(--ink);font-size:.95rem">Tải file lên (Word, Excel, TXT, CSV)</label>
         <input type="file" id="ed-file" accept=".txt,.csv,.docx,.xlsx,.xls" hidden>
       </div>
+      <details style="margin-top:14px"><summary style="font-weight:800;cursor:pointer">Câu hỏi bằng hình ảnh</summary>
+        <div class="muted">Chọn nhiều ảnh cùng lúc: mỗi ảnh thành một câu hỏi. Tên file là đáp án (ví dụ <b>christmas-tree.jpg</b> → “christmas tree”), bạn sửa lại được trong ô bên trên. Mã <b>@anh1</b> ở cuối dòng cho biết câu đó dùng ảnh nào.</div>
+        <label for="ed-imgq">Câu hỏi chung cho các ảnh</label><input id="ed-imgq" placeholder="Halloween or Christmas?">
+        <div class="row" style="margin-top:8px"><label class="btn" for="ed-imgs" style="margin:0;color:var(--ink);font-size:.95rem">Chọn ảnh</label><input type="file" id="ed-imgs" accept="image/*" multiple hidden></div>
+        <div class="thumbs" id="ed-thumbs"></div>
+      </details>
       <details style="margin-top:14px"><summary style="font-weight:800;cursor:pointer">Nhờ AI soạn câu hỏi từ tài liệu bất kỳ</summary>
         <label for="ed-src">Nội dung bài học / bài đọc / bài tập</label>
         <textarea id="ed-src" placeholder="Dán đoạn văn, danh sách từ vựng, bài tập điền từ…"></textarea>
@@ -174,7 +208,10 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
 const pick=a=>a[Math.random()*a.length|0];
-const store={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const store={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
+const line=x=>x.q+' | '+x.a+(x.img?' | @'+x.img:'');
+const qi=(s,it)=>it.img&&s.imgs&&s.imgs[it.img]?`<img class="qimg" src="${s.imgs[it.img]}" alt="">`:'';
+let AC;function beep(f=880,d=.06,v=.12){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
 let toastT;function toast(t,ms=3200){const el=$('#toast');el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,ms)}
 function modal(html){$('#mbox').innerHTML=html;$('#modal').hidden=false}
 function closeModal(){$('#modal').hidden=true}
@@ -189,7 +226,7 @@ const SAMPLE={id:'s1',title:'Food & Drinks (ví dụ)',items:[
 {q:'Complete: Would you like ___ cup of tea?',a:'a'},{q:'Meal you eat in the morning',a:'breakfast'},{q:'"I am ___ hungry" (very)',a:'so'},
 {q:'What do cows give us to drink?',a:'milk'},{q:'Countable or uncountable: rice?',a:'uncountable'},{q:'Polite way to ask for the bill',a:'Could I have the bill, please?'}]};
 let sets=store.get('ea_sets',null)||[SAMPLE];
-const saveSets=()=>store.set('ea_sets',sets);
+const saveSets=()=>{if(!store.set('ea_sets',sets))toast('Bộ nhớ máy đã đầy (thường do nhiều ảnh). Hãy xoá bớt bộ câu hỏi có ảnh.',6000)};
 
 /* ---------- AI (free first: Claude preview → Gemini key → Pollinations free) ---------- */
 const samplerP=(window.claude&&window.claude.use)?window.claude.use('sample').catch(()=>null):Promise.resolve(null);
@@ -224,7 +261,12 @@ $('#sets').addEventListener('click',e=>{const b=e.target.closest('button');if(!b
 });
 
 /* ---------- EDITOR ---------- */
-let editIdx=-1;
+let editIdx=-1,edImgs={};
+const drawThumbs=()=>{$('#ed-thumbs').innerHTML=Object.entries(edImgs).map(([k,v])=>`<figure><img src="${v}" alt=""><figcaption>@${k}</figcaption></figure>`).join('')};
+function shrink(file){return new Promise((ok,no)=>{const im=new Image();im.onload=()=>{const k=Math.min(1,640/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(im.src);ok(c.toDataURL('image/jpeg',.72))};im.onerror=()=>no(new Error('Không đọc được ảnh '+file.name));im.src=URL.createObjectURL(file)})}
+$('#ed-imgs').addEventListener('change',async e=>{const fs=[...e.target.files];e.target.value='';if(!fs.length)return;const q=$('#ed-imgq').value.trim()||'What is this?';const add=[];
+  for(const f of fs){try{let n=1;while(edImgs['anh'+n])n++;const id='anh'+n;edImgs[id]=await shrink(f);add.push(line({q,a:f.name.replace(/\.\w+$/,'').replace(/[-_]+/g,' ').replace(/\s*\d+$/,'').trim()||'?',img:id}))}catch(err){toast(err.message)}}
+  const cur=$('#ed-items').value.trim();$('#ed-items').value=(cur?cur+'\n':'')+add.join('\n');drawThumbs();updCount();toast('Đã thêm '+add.length+' câu hỏi bằng ảnh')});
 function parseItems(text){
   const out=[];let title='';const lines=String(text).split(/\r?\n/).map(l=>l.trim()).filter(Boolean);let pendingQ=null;
   for(const l of lines){
@@ -232,21 +274,25 @@ function parseItems(text){
     let m=l.match(/^(?:Q|Question)\s*[:.]\s*(.+)$/i);if(m){pendingQ=m[1];continue}
     m=l.match(/^(?:A|Answer)\s*[:.]\s*(.+)$/i);if(m&&pendingQ){out.push({q:pendingQ,a:m[1]});pendingQ=null;continue}
     const parts=l.split(/\s*\|\s*|\t|\s+=\s+|\s*;\s*(?=\S)/);
-    if(parts.length>=2&&parts[0]&&parts[1])out.push({q:parts[0].replace(/^\d+[.)]\s*/,''),a:parts.slice(1).join(' / ')});
+    let img;if(parts.length>2&&/^@\w+$/.test(parts[parts.length-1]))img=parts.pop().slice(1);
+    if(parts.length>=2&&parts[0]&&parts[1])out.push({q:parts[0].replace(/^\d+[.)]\s*/,''),a:parts.slice(1).join(' / '),...(img?{img}:{})});
   }
   return {title,items:out};
 }
 function openEditor(i){
   editIdx=i;const s=i>=0?sets[i]:{title:'',items:[]};
   $('#ed-head').textContent=i>=0?'Sửa bộ câu hỏi':'Bộ câu hỏi mới';
-  $('#ed-title').value=s.title;$('#ed-items').value=s.items.map(x=>x.q+' | '+x.a).join('\n');$('#ed-src').value='';updCount();show('edit');
+  edImgs={...(s.imgs||{})};drawThumbs();
+  $('#ed-title').value=s.title;$('#ed-items').value=s.items.map(line).join('\n');$('#ed-src').value='';updCount();show('edit');
 }
+$('#new-set2').onclick=()=>openEditor(-1);
 const updCount=()=>{$('#ed-count').textContent=parseItems($('#ed-items').value).items.length+' câu hợp lệ'};
 $('#ed-items').addEventListener('input',updCount);
 $('#new-set').onclick=()=>openEditor(-1);
 $('#ed-save').onclick=()=>{const p=parseItems($('#ed-items').value);const title=$('#ed-title').value.trim()||p.title||'Bộ câu hỏi '+(sets.length+1);
   if(p.items.length<2)return toast('Cần ít nhất 2 câu dạng “câu hỏi | đáp án”.');
-  const s={id:Date.now()+'',title,items:p.items};if(editIdx>=0)sets[editIdx]=s;else sets.unshift(s);saveSets();show('home');renderHome();toast('Đã lưu “'+title+'”')};
+  const imgs={};p.items.forEach(x=>{if(x.img&&edImgs[x.img])imgs[x.img]=edImgs[x.img];else delete x.img});
+  const s={id:Date.now()+'',title,items:p.items,imgs};if(editIdx>=0)sets[editIdx]=s;else sets.unshift(s);saveSets();show('home');renderHome();toast('Đã lưu “'+title+'”')};
 function loadLib(src,g){return window[g]?Promise.resolve():new Promise((ok,no)=>{const sc=document.createElement('script');sc.src=src;sc.onload=ok;sc.onerror=()=>no(new Error('Không tải được bộ đọc file'));document.head.appendChild(sc)})}
 $('#ed-file').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;e.target.value='';
   try{let text='';const ext=f.name.split('.').pop().toLowerCase();
@@ -269,12 +315,12 @@ $('#ed-ai').onclick=async()=>{const src=$('#ed-src').value.trim();if(src.length<
   }catch(e){toast(e.message||'Lỗi AI')}b.disabled=false;b.textContent='AI soạn câu hỏi'};
 
 /* ---------- GAME MODES ---------- */
-const MODES=[['grid','Bảng ô số (theo đội)','Kiểu Baamboozle: các đội lần lượt chọn ô, có ô may mắn / xui xẻo.'],['quiz','Quiz 4 đáp án','Chọn đáp án đúng trước khi hết giờ.'],['match','Lật thẻ ghép cặp','Tìm cặp câu hỏi – đáp án.'],['scramble','Sắp xếp chữ','Xếp lại chữ cái / từ thành đáp án đúng.'],['flash','Thẻ ghi nhớ','Lật thẻ để ôn nhanh.']];
+const MODES=[['grid','Bảng ô số (theo đội)','Kiểu Baamboozle: các đội lần lượt chọn ô, có ô may mắn / xui xẻo.'],['potato','Khoai tây nóng (theo đội)','Trả lời đúng để chuyền củ khoai sang đội khác trước khi nó nổ. Không ai biết khi nào nổ!'],['quiz','Quiz 4 đáp án','Chọn đáp án đúng trước khi hết giờ.'],['match','Lật thẻ ghép cặp','Tìm cặp câu hỏi – đáp án.'],['scramble','Sắp xếp chữ','Xếp lại chữ cái / từ thành đáp án đúng.'],['flash','Thẻ ghi nhớ','Lật thẻ để ôn nhanh.']];
 function chooseMode(i){const s=sets[i];
   modal(`<h2>${esc(s.title)}</h2><p class="muted">Chọn kiểu chơi</p><div style="display:grid;gap:10px">${MODES.map(m=>`<button data-mode="${m[0]}" style="text-align:left"><div>${m[1]}</div><div class="muted" style="font-weight:600">${m[2]}</div></button>`).join('')}</div>
-  <label for="m-teams">Số đội (cho Bảng ô số)</label><select id="m-teams"><option>2</option><option>3</option><option>4</option></select>
+  <label for="m-teams">Số đội (cho trò theo đội)</label><select id="m-teams"><option>2</option><option>3</option><option>4</option></select>
   <div class="row" style="margin-top:12px"><button class="ghost" onclick="closeModal()">Đóng</button></div>`);
-  $$('#mbox [data-mode]').forEach(b=>b.onclick=()=>{const t=+$('#m-teams').value;closeModal();show('play');({grid:()=>startGrid(s,t),quiz:()=>startQuiz(s),match:()=>startMatch(s),scramble:()=>startScramble(s),flash:()=>startFlash(s)})[b.dataset.mode]()});
+  $$('#mbox [data-mode]').forEach(b=>b.onclick=()=>{const t=+$('#m-teams').value;closeModal();show('play');({grid:()=>startGrid(s,t),potato:()=>startPotato(s,t),quiz:()=>startQuiz(s),match:()=>startMatch(s),scramble:()=>startScramble(s),flash:()=>startFlash(s)})[b.dataset.mode]()});
 }
 const P=()=>$('#v-play');
 const playHead=(t,extra='')=>`<div class="row" style="justify-content:space-between"><h2>${esc(t)}</h2><div class="row">${extra}<button class="ghost" data-go="home">Thoát</button></div></div>`;
@@ -302,23 +348,46 @@ function renderGrid(){
   P().innerHTML=playHead(G.s.title)+`<div class="board">${G.teams.map((t,i)=>`<div class="team ${i===G.turn?'cur':''}"><span>${t.name}</span><span class="s">${t.score}</span></div>`).join('')}</div>
   <p class="muted">Lượt của <b>${G.teams[G.turn].name}</b> – chọn một ô.</p><div class="tiles">${G.tiles.map((t,i)=>`<button class="tile c${i%5} ${t.used?'used':''}" data-t="${i}">${i+1}</button>`).join('')}</div>`;
   $$('#v-play [data-t]').forEach(b=>b.onclick=()=>openTile(+b.dataset.t));
-  if(G.tiles.every(t=>t.used)){const w=[...G.teams].sort((a,b)=>b.score-a.score);modal(`<h2>Kết thúc!</h2><p class="q-big">${w[0].name} thắng</p>${w.map(t=>`<div class="row" style="justify-content:space-between"><b>${t.name}</b><span class="stat">${t.score}</span></div>`).join('')}<div class="row" style="margin-top:14px"><button class="pri" onclick="closeModal();startGrid(G.s,G.teams.length)">Chơi lại</button><button class="ghost" onclick="closeModal();show('home');renderHome()">Về trang chủ</button></div>`)}
+  if(G.tiles.every(t=>t.used)){const w=[...G.teams].sort((a,b)=>b.score-a.score);modal(`<img class="mascot-sm" src="img/mascot-wave.png" alt=""><h2 style="text-align:center">Kết thúc!</h2><p class="q-big">${w[0].name} thắng</p>${w.map(t=>`<div class="row" style="justify-content:space-between"><b>${t.name}</b><span class="stat">${t.score}</span></div>`).join('')}<div class="row" style="margin-top:14px"><button class="pri" onclick="closeModal();startGrid(G.s,G.teams.length)">Chơi lại</button><button class="ghost" onclick="closeModal();show('home');renderHome()">Về trang chủ</button></div>`)}
 }
 function nextTurn(){G.turn=(G.turn+1)%G.teams.length;closeModal();renderGrid()}
 function openTile(i){const t=G.tiles[i],me=G.teams[G.turn];t.used=true;
   if(t.p){t.p.f(G,me);modal(`<div style="text-align:center"><div class="q-big" style="color:var(--coral)">${t.p.t}</div><p>${me.name}: ${t.p.d}</p><button class="pri" id="nx">Tiếp tục</button></div>`);$('#nx').onclick=nextTurn;return}
-  modal(`<div style="text-align:center"><span class="pts">${t.pts} điểm</span> <span class="muted">${me.name}</span><div class="q-big">${esc(t.it.q)}</div>
+  modal(`<div style="text-align:center"><span class="pts">${t.pts} điểm</span> <span class="muted">${me.name}</span>${qi(G.s,t.it)}<div class="q-big">${esc(t.it.q)}</div>
   <div class="bar"><i id="tb" style="width:100%"></i></div><div id="ar"><button class="sun" id="rv">Xem đáp án</button></div></div>`);
   let left=30;timer=setInterval(()=>{left--;const b=$('#tb');if(b)b.style.width=(left/30*100)+'%';if(left<=0)stopTimer()},1000);
   $('#rv').onclick=()=>{stopTimer();$('#ar').innerHTML=`<div class="ans">${esc(t.it.a)}</div><div class="row" style="justify-content:center;margin-top:14px"><button class="ok" id="ok">Đúng +${t.pts}</button><button class="no" id="no">Sai</button></div>`;
     $('#ok').onclick=()=>{me.score+=t.pts;nextTurn()};$('#no').onclick=nextTurn};
 }
 
+/* Hot potato: hidden random fuse; correct answer passes the potato; holder loses points when it explodes */
+let HP;
+const teamBoard=(teams,turn)=>`<div class="board">${teams.map((t,i)=>`<div class="team ${i===turn?'cur':''}"><span>${t.name}</span><span class="s">${t.score}</span></div>`).join('')}</div>`;
+function startPotato(s,n){HP={s,teams:TEAMS.slice(0,n).map(name=>({name,score:0})),turn:0,Q:shuffle(s.items),k:0,round:1,on:false,ms:0};drawPotato()}
+function drawPotato(){stopTimer();const it=HP.Q[HP.k%HP.Q.length],me=HP.teams[HP.turn];
+  P().innerHTML=playHead('Khoai tây nóng',`<span class="pts">Vòng ${HP.round}</span><button class="ghost" id="pend">Kết thúc</button>`)+teamBoard(HP.teams,HP.turn)+
+  `<div class="panel" style="text-align:center"><div class="potato" id="pot"><div class="fuse"></div>${HP.on?'<div class="spark"></div>':''}<div class="ball">${HP.on?'HOT!':'GO'}</div></div>
+  <p>Củ khoai đang ở <b>${me.name}</b>${HP.on?'':' – bấm “Châm ngòi” để bắt đầu vòng '+HP.round}</p>
+  ${HP.on?qi(HP.s,it)+`<div class="q-big">${esc(it.q)}</div><div id="pans"></div><div class="row" style="justify-content:center"><button class="sun" id="prv">Xem đáp án</button><button class="ok" id="pok">Đúng – chuyền khoai! +10</button><button class="ghost" id="psk">Đổi câu khác</button></div>`:`<button class="pri" id="pgo">Châm ngòi!</button>`}</div>`;
+  $('#pend').onclick=endPotato;
+  if(!HP.on){$('#pgo').onclick=()=>{HP.on=true;HP.ms=(20+Math.random()*40)*1000;drawPotato()};return}
+  $('#prv').onclick=()=>$('#pans').innerHTML=`<div class="ans">${esc(it.a)}</div>`;
+  $('#pok').onclick=()=>{me.score+=10;HP.k++;HP.turn=(HP.turn+1)%HP.teams.length;beep(1200,.12);drawPotato()};
+  $('#psk').onclick=()=>{HP.k++;drawPotato()};
+  let tick=0;timer=setInterval(()=>{HP.ms-=250;tick+=250;const gap=HP.ms<6000?250:HP.ms<15000?500:1000;if(tick>=gap){tick=0;beep(HP.ms<6000?1100:760)}
+    $('#pot')?.classList.toggle('hot',HP.ms<6000);if(HP.ms<=0)boom()},250);
+}
+function boom(){stopTimer();const me=HP.teams[HP.turn];me.score=Math.max(0,me.score-20);beep(110,.7,.35);setTimeout(()=>beep(70,.6,.3),120);
+  HP.on=false;HP.round++;HP.k++;drawPotato();
+  modal(`<div class="boom">BOOM!</div><img class="mascot-sm" src="img/m2.png" alt="" style="width:70px"><p style="text-align:center">Củ khoai nổ ở <b>${me.name}</b>: −20 điểm.</p><div class="row" style="justify-content:center"><button class="pri" onclick="closeModal()">Vòng tiếp theo</button></div>`)}
+function endPotato(){stopTimer();HP.on=false;const w=[...HP.teams].sort((a,b)=>b.score-a.score);
+  modal(`<img class="mascot-sm" src="img/mascot-wave.png" alt=""><h2 style="text-align:center">${w[0].name} thắng!</h2>${w.map(t=>`<div class="row" style="justify-content:space-between"><b>${t.name}</b><span class="stat">${t.score}</span></div>`).join('')}<div class="row" style="margin-top:14px"><button class="pri" onclick="closeModal();startPotato(HP.s,HP.teams.length)">Chơi lại</button><button class="ghost" onclick="closeModal();show('home');renderHome()">Về trang chủ</button></div>`)}
+
 /* Quiz */
 function startQuiz(s){const Q=shuffle(s.items);let k=0,score=0,right=0;const all=[...new Set(s.items.map(x=>x.a))];
   const step=()=>{stopTimer();if(k>=Q.length){P().innerHTML=playHead('Kết quả')+`<div class="panel" style="text-align:center"><div class="stat">${score} điểm</div><p>Đúng ${right}/${Q.length} câu</p><button class="pri" id="again">Chơi lại</button></div>`;$('#again').onclick=()=>startQuiz(s);return}
     const it=Q[k];const opts=shuffle([it.a,...shuffle(all.filter(a=>a!==it.a)).slice(0,3)]);let left=20;
-    P().innerHTML=playHead(s.title,`<span class="pts">${score}</span>`)+`<div class="panel"><div class="muted">Câu ${k+1}/${Q.length}</div><div class="q-big">${esc(it.q)}</div><div class="bar"><i id="tb" style="width:100%"></i></div>
+    P().innerHTML=playHead(s.title,`<span class="pts">${score}</span>`)+`<div class="panel"><div class="muted">Câu ${k+1}/${Q.length}</div>${qi(s,it)}<div class="q-big">${esc(it.q)}</div><div class="bar"><i id="tb" style="width:100%"></i></div>
     <div class="opts">${opts.map((o,i)=>`<button class="c${i}" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="fb" class="row" style="justify-content:center;margin-top:12px"></div></div>`;
     const done=(o)=>{stopTimer();$$('#v-play [data-o]').forEach(b=>{b.disabled=true;if(b.dataset.o===it.a){b.disabled=false;b.style.outline='5px solid var(--leaf)'}});
       if(o===it.a){right++;score+=50+left*5;toast('Chính xác!',1200)}else toast('Đáp án: '+it.a,1800);
@@ -351,7 +420,7 @@ function startScramble(s){const Q=shuffle(s.items);let k=0,score=0;
 
 /* Flashcards */
 function startFlash(s){const Q=shuffle(s.items);let k=0,flip=false;
-  const draw=()=>{const it=Q[k];P().innerHTML=playHead('Thẻ ghi nhớ',`<span class="pts">${k+1}/${Q.length}</span>`)+`<button class="panel" id="fc" style="width:100%;min-height:240px;box-shadow:0 4px 0 var(--ink)"><div class="${flip?'ans':'q-big'}">${esc(flip?it.a:it.q)}</div><div class="muted">${flip?'Đáp án':'Chạm để lật thẻ'}</div></button>
+  const draw=()=>{const it=Q[k];P().innerHTML=playHead('Thẻ ghi nhớ',`<span class="pts">${k+1}/${Q.length}</span>`)+`<button class="panel" id="fc" style="width:100%;min-height:240px;box-shadow:0 4px 0 var(--ink)">${flip?'':qi(s,it)}<div class="${flip?'ans':'q-big'}">${esc(flip?it.a:it.q)}</div><div class="muted">${flip?'Đáp án':'Chạm để lật thẻ'}</div></button>
     <div class="row" style="justify-content:center;margin-top:12px"><button class="ghost" id="pv">← Trước</button><button class="ghost" id="say">Nghe đọc</button><button class="pri" id="nx">Sau →</button></div>`;
     $('#fc').onclick=()=>{flip=!flip;draw()};$('#pv').onclick=()=>{k=(k-1+Q.length)%Q.length;flip=false;draw()};$('#nx').onclick=()=>{k=(k+1)%Q.length;flip=false;draw()};$('#say').onclick=()=>speak(flip?it.a:it.q,true)};
   draw();}
@@ -368,7 +437,7 @@ const LV={kids:'a child aged 6-11 (A1-A2). Use very simple words, short sentence
 const sysPrompt=()=>`You are Lily, a warm, natural English conversation partner talking with ${LV[level()]}. Topic: "${$('#sp-custom').value.trim()||topic}".
 Rules: reply like a real person in 1-3 short sentences, react to what the learner said, then usually ask ONE follow-up question. If the learner asks you a question, answer it naturally first. Keep the conversation going; you may suggest a related sub-topic when it stalls.
 Check the learner's LAST message for grammar and vocabulary mistakes (ignore missing punctuation/capitals because it comes from speech recognition).
-Return ONLY JSON: {"reply":"your spoken reply","mistakes":[{"wrong":"exact wrong part","right":"correct form","why":"very short explanation in Vietnamese"}],"better":"a natural, correct version of the learner's last message, or empty string if it was already good","grammar":0-10}`;
+Return ONLY JSON: {"reply":"your spoken reply","mistakes":[{"wrong":"exact wrong part","right":"correct form","why":"giải thích rất ngắn BẰNG TIẾNG VIỆT (always write this field in Vietnamese)"}],"better":"a natural, correct version of the learner's last message, or empty string if it was already good","grammar":0-10}`;
 function addMsg(html,who){const d=document.createElement('div');d.className='msg '+who;d.innerHTML=html;$('#chat').appendChild(d);$('#chat').scrollTop=1e6;return d}
 const status=t=>$('#sp-status').textContent=t||'';
 function speak(t,force){if(!force&&!$('#sp-voice').checked)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=level()==='kids'?.85:.95;
