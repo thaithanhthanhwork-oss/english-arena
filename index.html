@@ -236,6 +236,81 @@ padding:calc(env(safe-area-inset-top,0px) + 12px) max(16px,env(safe-area-inset-r
 .key{font-family:"Fredoka";font-weight:700;font-size:1.15rem;padding:9px 0;background:#fff;color:var(--navy);border:none;box-shadow:0 4px 0 #8FA3BF;border-radius:10px}
 .key.hit{background:#22B573;color:#fff;opacity:1}.key.miss{background:#E8503A;color:#fff;opacity:.45}
 @media(prefers-reduced-motion:reduce){.bal,.tbtn.win,.bl.on{animation:none!important}.wheel{transition:none!important}}
+
+/* tic tac toe */
+.ttt{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:10px;width:min(100%,460px,62vh);margin:0 auto}
+.tcell{aspect-ratio:1;border:none;border-radius:16px;background:rgba(255,255,255,.12);box-shadow:inset 0 0 0 3px rgba(255,255,255,.2);padding:0;display:grid;place-items:center}
+.tcell:hover:not(:disabled){background:rgba(244,178,58,.35)}
+.tcell:disabled{opacity:1}
+.mk{display:grid;place-items:center;width:84%;height:84%;border-radius:50%;background:var(--c);animation:pop .35s}.mk img{width:82%}
+.wl{box-shadow:0 0 0 5px #7CFFB2,0 0 28px #7CFFB2!important}
+/* connect 4 */
+.c4{width:min(100%,560px,82vh);margin:0 auto}
+.c4cols,.c4grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.c4cols{margin-bottom:6px}
+.c4btn{border:none;background:var(--gold);color:var(--navy);border-radius:10px;padding:6px 0;font-size:1.1rem;box-shadow:0 4px 0 #B9801C}
+.c4grid{background:#2A9DB5;padding:8px;border-radius:18px;box-shadow:0 8px 0 #1C6E80}
+.c4h{aspect-ratio:1;border-radius:50%;background:#0D1B3D;display:grid;place-items:center}
+.c4h i{width:86%;height:86%;border-radius:50%}
+.c4h .disc{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.55),var(--c) 45%)}
+.disc.drop{animation:dropd .5s cubic-bezier(.5,0,.6,1.3);position:relative;z-index:2}
+@keyframes dropd{from{transform:translateY(calc(var(--rows) * -118%))}}
+/* snakes & ladders */
+.sboard{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;width:min(100%,640px);margin:0 auto}
+.sc{position:relative;aspect-ratio:1.2;border-radius:10px;background:rgba(255,255,255,.1);padding:4px;min-width:0}
+.sc:nth-child(odd){background:rgba(255,255,255,.17)}
+.sc.lad{background:rgba(34,181,115,.4)}.sc.snk{background:rgba(232,80,58,.4)}.sc.fin{background:var(--gold);color:var(--navy)}
+.sn{font-weight:700;font-size:clamp(.8rem,2.2vw,1.1rem)}
+.sj{position:absolute;right:4px;top:4px;font-size:clamp(.6rem,1.8vw,.9rem);font-weight:700}
+.tok{position:absolute;left:4px;right:4px;bottom:4px;display:flex;flex-wrap:wrap;gap:2px}
+.tok img{width:clamp(18px,4.5vw,32px);height:clamp(18px,4.5vw,32px);border-radius:50%;background:var(--c);object-fit:contain;animation:pop .4s}
+.dice{font-size:3.6rem;line-height:1;width:70px;text-align:center}
+/* bingo */
+.bcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:14px}
+.bcard{background:rgba(255,255,255,.08);border:3px solid var(--c);border-radius:18px;padding:10px;min-width:0}
+.bh{display:flex;align-items:center;gap:8px;font-weight:700;margin-bottom:8px}.bh img{width:36px;height:36px;border-radius:10px;background:var(--c);object-fit:contain}
+.bgrid{display:grid;grid-template-columns:repeat(var(--n),1fr);gap:6px}
+.bcell{aspect-ratio:1.3;display:grid;place-items:center;text-align:center;background:#fff;color:var(--navy);border-radius:10px;font-weight:600;font-size:clamp(.75rem,1.8vw,.95rem);padding:4px;overflow-wrap:anywhere;min-width:0}
+.bcell.hit{background:var(--c);box-shadow:inset 0 0 0 4px rgba(13,27,61,.35)}
+.pop{animation:pop .4s}
+/* plinko */
+.pdrops{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;width:min(100%,540px,64vh);margin:0 auto 4px}
+.pdrop{border:none;padding:6px 0;border-radius:8px;background:var(--gold);color:var(--navy);box-shadow:0 3px 0 #B9801C}
+.pboard{position:relative;width:min(100%,540px,64vh);aspect-ratio:1/1.05;margin:0 auto;background:rgba(255,255,255,.06);border:3px solid rgba(255,255,255,.2);border-radius:18px;overflow:hidden}
+.peg{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.6)}
+.pslot{position:absolute;bottom:0;height:14%;display:grid;place-items:center;font-weight:700;font-size:clamp(.75rem,2.4vw,1.2rem);border-left:2px solid rgba(255,255,255,.25);background:rgba(42,157,181,.35);box-sizing:border-box}
+.pslot.big{background:rgba(244,178,58,.6);color:var(--navy)}
+.pslot.lit{background:#7CFFB2;color:var(--navy);animation:pop .4s}
+.pball{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,var(--gold) 55%,#B9801C);transition:left .24s ease-in,top .24s ease-in;z-index:2}
+/* basketball */
+.court{position:relative;height:clamp(240px,40vw,340px);width:min(100%,640px);margin:0 auto;border-radius:20px;background:linear-gradient(#16305F,#0D1B3D 72%,#7A4E22 72%,#5A3A1A);overflow:hidden;border:3px solid rgba(255,255,255,.2)}
+.hoop{position:absolute;left:66%;bottom:50%;width:16%;height:30%}
+.hoop .board{position:absolute;right:-12%;bottom:18%;width:10%;height:120%;background:#fff;border-radius:4px}
+.hoop .rim{position:absolute;left:0;right:0;bottom:18%;height:8px;border-radius:6px;background:#E8503A;z-index:3}
+.hoop .net{position:absolute;left:8%;right:8%;top:84%;height:44%;background:repeating-linear-gradient(60deg,transparent 0 6px,rgba(255,255,255,.75) 6px 8px),repeating-linear-gradient(-60deg,transparent 0 6px,rgba(255,255,255,.75) 6px 8px);clip-path:polygon(0 0,100% 0,80% 100%,20% 100%)}
+.kmasc{position:absolute;left:3%;bottom:8%;height:58%}
+.ball{position:absolute;left:22%;bottom:30%;width:clamp(30px,6vw,44px);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFB36B,#E06A1E 60%,#9C3F0A);box-shadow:inset 0 0 0 2px rgba(0,0,0,.35);z-index:2}
+.ball.in{animation:shotIn 1s ease-in-out forwards}.ball.miss{animation:shotMiss 1s ease-in-out forwards}
+@keyframes shotIn{50%{left:50%;bottom:94%}80%{left:74%;bottom:56%}100%{left:74%;bottom:28%}}
+@keyframes shotMiss{50%{left:52%;bottom:94%}75%{left:68%;bottom:60%}100%{left:54%;bottom:6%}}
+.meter{position:relative;width:min(100%,480px);height:28px;margin:14px auto 0;border-radius:14px;background:#E8503A;overflow:hidden;border:3px solid #fff}
+.meter .zone{position:absolute;left:34%;width:32%;top:0;bottom:0;background:#22B573}
+.meter .perfect{position:absolute;left:45%;width:10%;top:0;bottom:0;background:#7CFFB2}
+.meter .needle{position:absolute;top:0;bottom:0;width:6px;margin-left:-3px;background:#fff;left:0;box-shadow:0 0 6px #000}
+/* story dice */
+.sdice{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2vw,18px);width:min(100%,520px,70vh);margin:10px auto}
+.sdie{aspect-ratio:1;border-radius:22px;background:#fff;color:var(--navy);display:grid;place-items:center;font-size:clamp(2.4rem,9vw,4.4rem);box-shadow:0 8px 0 #8FA3BF;transform:rotate(var(--r));min-width:0}
+.sdie.word{font-family:"Fredoka";font-weight:700;font-size:clamp(1rem,3.5vw,1.6rem);background:var(--gold);box-shadow:0 8px 0 #B9801C;padding:6px;text-align:center;overflow-wrap:anywhere}
+/* gift boxes */
+.gifts{display:grid;grid-template-columns:repeat(auto-fill,minmax(clamp(84px,16vw,140px),1fr));gap:clamp(10px,2vw,18px)}
+.gift{aspect-ratio:1;border:none;border-radius:14px;display:grid;place-items:center;font-family:"Fredoka";font-weight:700;font-size:clamp(1.3rem,4vw,2rem);box-shadow:0 7px 0 rgba(0,0,0,.35);padding:0;--rb:#2A9DB5;background:linear-gradient(90deg,transparent 42%,var(--rb) 42% 58%,transparent 58%),linear-gradient(transparent 38%,var(--rb) 38% 52%,transparent 52%),var(--bx,#F4B23A)}
+.gift.g1{--bx:#2A9DB5;--rb:#F4B23A}.gift.g2{--bx:#FFFFFF;--rb:#FF8A9A}
+.gift .gb{background:rgba(13,27,61,.8);color:#fff;border-radius:10px;padding:2px 10px}
+.gift:hover:not(:disabled){animation:wob .3s ease-in-out infinite alternate}
+.gift.shakeit{animation:wob .12s infinite alternate}
+.gift.open{background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 3px rgba(255,255,255,.25);opacity:1}
+.gift.open .gb{background:transparent;font-size:clamp(.9rem,2.6vw,1.2rem);text-align:center}
+@media(prefers-reduced-motion:reduce){.mk,.disc.drop,.tok img,.gift,.ball.in,.ball.miss{animation:none!important}}
 </style>
 
 <div class="wrap">
@@ -446,8 +521,8 @@ $('#ed-ai').onclick=async()=>{const src=$('#ed-src').value.trim();if(src.length<
   }catch(e){toast(e.message||'Lỗi AI')}b.disabled=false;b.textContent='AI soạn câu hỏi'};
 
 /* ---------- GAME MODES ---------- */
-const MODES=[['grid','Bảng ô số (theo đội)','Kiểu Baamboozle: các đội lần lượt chọn ô, có ô may mắn / xui xẻo.'],['potato','Khoai tây nóng (theo đội)','Trả lời đúng để chuyền củ khoai sang đội khác trước khi nó nổ. Không ai biết khi nào nổ!'],['tot','Chọn 1 trong 2 (theo đội)','Xem ảnh hoặc câu hỏi rồi chọn nhanh một trong hai đáp án, như “Halloween hay Christmas?”.'],['reveal','Lật ô bí ẩn (theo đội)','Một bức ảnh hoặc từ bí mật bị che bởi 16 ô. Trả lời đúng để mở ô, ai đoán ra bí mật trước sẽ thắng lớn!'],['wheel','Vòng quay may mắn (theo đội)','Trả lời đúng để được quay: cộng điểm, nhân đôi, lấy điểm đội khác… hoặc BOOM!'],['balloon','Giải cứu linh vật (theo đội)','Đoán từng chữ cái của đáp án. Đoán sai thì một quả bóng bay vỡ và linh vật rơi dần xuống!'],['quiz','Quiz 4 đáp án','Chọn đáp án đúng trước khi hết giờ.'],['match','Lật thẻ ghép cặp','Tìm cặp câu hỏi – đáp án.'],['scramble','Sắp xếp chữ','Xếp lại chữ cái / từ thành đáp án đúng.'],['flash','Thẻ ghi nhớ','Lật thẻ để ôn nhanh.']];
-const MI={grid:'#',potato:'🥔',tot:'⇄',reveal:'▦',wheel:'◎',balloon:'🎈',quiz:'?',match:'❖',scramble:'Ab',flash:'▣'};
+const MODES=[['grid','Bảng ô số (theo đội)','Kiểu Baamboozle: các đội lần lượt chọn ô, có ô may mắn / xui xẻo.'],['potato','Khoai tây nóng (theo đội)','Trả lời đúng để chuyền củ khoai sang đội khác trước khi nó nổ. Không ai biết khi nào nổ!'],['tot','Chọn 1 trong 2 (theo đội)','Xem ảnh hoặc câu hỏi rồi chọn nhanh một trong hai đáp án, như “Halloween hay Christmas?”.'],['reveal','Lật ô bí ẩn (theo đội)','Một bức ảnh hoặc từ bí mật bị che bởi 16 ô. Trả lời đúng để mở ô, ai đoán ra bí mật trước sẽ thắng lớn!'],['wheel','Vòng quay may mắn (theo đội)','Trả lời đúng để được quay: cộng điểm, nhân đôi, lấy điểm đội khác… hoặc BOOM!'],['balloon','Giải cứu linh vật (theo đội)','Đoán từng chữ cái của đáp án. Đoán sai thì một quả bóng bay vỡ và linh vật rơi dần xuống!'],['ttt','Tic Tac Toe (theo đội)','Trả lời đúng mới được chiếm ô. Đội nào xếp 3 ô thẳng hàng trước thì thắng ván.'],['c4','Nối 4 (theo đội)','Trả lời đúng để thả quân xuống cột. Nối 4 quân thẳng hàng để thắng!'],['snake','Rắn và thang (theo đội)','Trả lời đúng thì được tung xúc xắc. Gặp thang leo lên, gặp rắn trượt xuống!'],['bingo','Bingo (theo đội)','Mỗi đội một thẻ đáp án. Mỗi câu hỏi mở ra một đáp án, đội nào đủ một hàng trước hô BINGO!'],['plinko','Thả bi Plinko (theo đội)','Trả lời đúng, chọn chỗ thả bi, xem bi nảy qua các chốt rơi vào ô điểm – có ô 100!'],['bball','Ném bóng rổ (theo đội)','Trả lời đúng rồi canh lực ném: dừng kim trong vùng xanh để vào rổ.'],['story','Xúc xắc kể chuyện (theo đội)','Tung 6 xúc xắc hình và từ vựng, rồi kể một câu chuyện bằng tiếng Anh. Rất hợp luyện nói!'],['boxes','Hộp quà bí mật (theo đội)','Trả lời đúng để mở một hộp quà: có điểm thưởng, nhân đôi, đổi điểm… hoặc BOOM!'],['quiz','Quiz 4 đáp án','Chọn đáp án đúng trước khi hết giờ.'],['match','Lật thẻ ghép cặp','Tìm cặp câu hỏi – đáp án.'],['scramble','Sắp xếp chữ','Xếp lại chữ cái / từ thành đáp án đúng.'],['flash','Thẻ ghi nhớ','Lật thẻ để ôn nhanh.']];
+const MI={ttt:'✕',c4:'●',snake:'🐍',bingo:'B',plinko:'⋮',bball:'🏀',story:'🎲',boxes:'🎁',grid:'#',potato:'🥔',tot:'⇄',reveal:'▦',wheel:'◎',balloon:'🎈',quiz:'?',match:'❖',scramble:'Ab',flash:'▣'};
 function chooseMode(i){const s=sets[i];show('play');
   P().innerHTML=playHead(s.title)+`<h2 class="stitle">Chọn trò chơi</h2><div class="modes">${MODES.map((m,k)=>`<button class="mode k${k%3}" data-mode="${m[0]}" style="--r:${(k%3-1)*1.5}deg"><span class="mi">${MI[m[0]]}</span><b>${m[1]}</b><small>${m[2]}</small></button>`).join('')}</div>`;
   $$('#v-play [data-mode]').forEach(b=>b.onclick=()=>{SFX.pop();if(STARTS[b.dataset.mode])return setupTeams(s,b.dataset.mode);({quiz:()=>startQuiz(s),match:()=>startMatch(s),scramble:()=>startScramble(s),flash:()=>startFlash(s)})[b.dataset.mode]()})}
@@ -638,8 +713,149 @@ function missLetter(){BL.balloons--;beep(260,.12,.18,'square');setTimeout(()=>be
   if(BL.balloons<=0){BL.done=true;SFX.buzz();drawBalloon();toast('Hết bóng bay rồi! Đáp án: '+BL.word,3500);return}drawBalloon()}
 function winWord(){BL.done=true;SFX.fan();party({particleCount:150,spread:100});drawBalloon()}
 
-const STARTS={grid:startGrid,potato:startPotato,tot:startTot,reveal:startReveal,wheel:startWheel,balloon:startBalloon};
+const STARTS={grid:startGrid,potato:startPotato,tot:startTot,reveal:startReveal,wheel:startWheel,balloon:startBalloon,ttt:startTtt,c4:startC4,snake:startSnake,bingo:startBingo,plinko:startPlinko,bball:startBball,story:startStory,boxes:startBoxes};
 const MNAME=m=>((MODES.find(x=>x[0]===m)||[0,''])[1]).replace(/ \(.*\)$/,'');
+
+/* ===== Batch 2: board games driven by questions ===== */
+const nxt=o=>o.turn=(o.turn+1)%o.teams.length;
+const endBtn=id=>`<button class="ghost" id="${id}">Kết thúc</button>`;
+const qOf=o=>o.Q[o.k++%o.Q.length];
+const mark=t=>`<span class="mk" style="--c:${t.col}"><img src="${t.av}" alt=""></span>`;
+function lines(R,C,k){const L=[];for(let r=0;r<R;r++)for(let c=0;c<C;c++)for(const[dr,dc]of[[0,1],[1,0],[1,1],[1,-1]]){const a=[];for(let i=0;i<k;i++){const y=r+dr*i,x=c+dc*i;if(y<0||x<0||y>=R||x>=C)break;a.push(y*C+x)}if(a.length===k)L.push(a)}return L}
+const winLine=(b,R,C,k,v)=>lines(R,C,k).find(a=>a.every(i=>b[i]===v));
+
+/* Tic Tac Toe (3x3 for 2 teams, 4x4 for more; 3 in a row wins) */
+let TX;
+function startTtt(s,teams,items){TX={s,teams,turn:0,Q:items,k:0,n:teams.length<=2?3:4,round:1};TX.b=Array(TX.n*TX.n).fill(-1);drawTtt()}
+function drawTtt(win){const me=TX.teams[TX.turn],n=TX.n,full=TX.b.every(v=>v>=0);
+  P().innerHTML=playHead('Tic Tac Toe',`<span class="pts">Ván ${TX.round}</span>${endBtn('xend')}`)+teamBar(TX.teams,TX.turn)+`<p class="turn">${win?`<b style="color:${win.t.col}">${esc(win.t.name)}</b> thắng ván này! +30`:full?'Hoà rồi!':`<b style="color:${me.col}">${esc(me.name)}</b>: chọn một ô rồi trả lời đúng để chiếm ô`}</p>
+  <div class="ttt" style="--n:${n}">${TX.b.map((v,i)=>`<button class="tcell ${win&&win.line.includes(i)?'wl':''}" data-x="${i}" ${v>=0||win?'disabled':''} aria-label="Ô ${i+1}">${v>=0?mark(TX.teams[v]):''}</button>`).join('')}</div>
+  ${win||full?`<div class="row" style="justify-content:center;margin-top:16px"><button class="big b-gold" id="xnew">Ván mới</button></div>`:''}`;
+  $('#xend').onclick=()=>podium(TX.teams,()=>setupTeams(TX.s,'ttt'));
+  if($('#xnew'))$('#xnew').onclick=()=>{TX.b.fill(-1);TX.round++;nxt(TX);drawTtt()};
+  $$('#v-play [data-x]').forEach(b=>b.onclick=()=>{const c=+b.dataset.x,i=TX.turn;askQ(TX.s,qOf(TX),me,ok=>{if(ok){TX.b[c]=i;SFX.pop();const L=winLine(TX.b,n,n,3,i);if(L){me.score+=30;SFX.fan();party({particleCount:150});drawTtt({t:me,line:L});return floatPts(i,'+30')}}nxt(TX);drawTtt()})});
+}
+
+/* Connect 4 */
+let C4;
+function startC4(s,teams,items){C4={s,teams,turn:0,Q:items,k:0,R:6,C:7,round:1};C4.b=Array(42).fill(-1);drawC4()}
+function drawC4(win,drop){const me=C4.teams[C4.turn],R=C4.R,C=C4.C,full=C4.b.every(v=>v>=0);
+  P().innerHTML=playHead('Nối 4',`<span class="pts">Ván ${C4.round}</span>${endBtn('cend')}`)+teamBar(C4.teams,C4.turn)+`<p class="turn">${win?`<b style="color:${win.t.col}">${esc(win.t.name)}</b> nối được 4 quân! +40`:`<b style="color:${me.col}">${esc(me.name)}</b>: chọn cột, trả lời đúng mới được thả quân`}</p>
+  <div class="c4"><div class="c4cols">${Array.from({length:C},(_,c)=>`<button class="c4btn" data-col="${c}" ${win||C4.b[c]>=0?'disabled':''} aria-label="Cột ${c+1}">▼</button>`).join('')}</div>
+  <div class="c4grid">${C4.b.map((v,i)=>`<div class="c4h"><i class="${v>=0?'disc':''} ${i===drop?'drop':''} ${win&&win.line.includes(i)?'wl':''}" style="${v>=0?`--c:${C4.teams[v].col};--rows:${Math.floor(i/C)+1}`:''}"></i></div>`).join('')}</div></div>
+  ${win||full?`<div class="row" style="justify-content:center;margin-top:16px"><button class="big b-gold" id="cnew">Ván mới</button></div>`:''}`;
+  $('#cend').onclick=()=>podium(C4.teams,()=>setupTeams(C4.s,'c4'));
+  if($('#cnew'))$('#cnew').onclick=()=>{C4.b.fill(-1);C4.round++;nxt(C4);drawC4()};
+  $$('#v-play [data-col]').forEach(b=>b.onclick=()=>{const c=+b.dataset.col,i=C4.turn;askQ(C4.s,qOf(C4),me,ok=>{if(ok){let r=R-1;while(r>=0&&C4.b[r*C+c]>=0)r--;if(r>=0){const idx=r*C+c;C4.b[idx]=i;SFX.pop();const L=winLine(C4.b,R,C,4,i);if(L){me.score+=40;SFX.fan();party({particleCount:150});drawC4({t:me,line:L},idx);return floatPts(i,'+40')}nxt(C4);return drawC4(null,idx)}}nxt(C4);drawC4()})});
+}
+
+/* Snakes & Ladders (30 squares) */
+const SLMAP={3:11,6:17,9:18,14:25,20:28,12:2,19:8,24:15,27:10,29:21},SLN=30;
+let SN;
+function startSnake(s,teams,items){SN={s,teams:teams.map(t=>({...t,pos:1})),turn:0,Q:items,k:0};drawSnake()}
+function rollDice(done){const d=$('#dice'),f=['⚀','⚁','⚂','⚃','⚄','⚅'];let n=0;const t=setInterval(()=>{d.textContent=pick(f);beep(500+Math.random()*400,.03,.08);if(++n>12){clearInterval(t);const v=1+Math.random()*6|0;d.textContent=f[v-1];d.classList.add('pop');setTimeout(()=>done(v),700)}},70)}
+function drawSnake(msg){const me=SN.teams[SN.turn];let cells='';
+  for(let r=4;r>=0;r--){const row=[];for(let c=0;c<6;c++)row.push(r*6+c+1);if(r%2)row.reverse();
+    row.forEach(n=>{const to=SLMAP[n];cells+=`<div class="sc ${to?(to>n?'lad':'snk'):''} ${n===SLN?'fin':''}"><span class="sn">${n===SLN?'🏁 ':''}${n}</span>${to?`<span class="sj">${to>n?'🪜':'🐍'}${to}</span>`:''}<div class="tok">${SN.teams.filter(t=>t.pos===n).map(t=>`<img src="${t.av}" style="--c:${t.col}" alt="${esc(t.name)}">`).join('')}</div></div>`})}
+  P().innerHTML=playHead('Rắn và thang',endBtn('send'))+teamBar(SN.teams.map(t=>({...t,score:'Ô '+t.pos})),SN.turn)+`<p class="turn">${msg?msg+'<br>':''}<b style="color:${me.col}">${esc(me.name)}</b>: trả lời đúng để tung xúc xắc</p>
+  <div class="sboard">${cells}</div><div class="row" style="justify-content:center;margin-top:14px;gap:14px"><div class="dice" id="dice">🎲</div><button class="big b-gold" id="sq2">Nhận câu hỏi</button></div>`;
+  const fin=()=>{SN.teams.forEach(t=>t.score=t.pos);podium(SN.teams,()=>setupTeams(SN.s,'snake'))};
+  $('#send').onclick=fin;
+  $('#sq2').onclick=()=>askQ(SN.s,qOf(SN),me,ok=>{if(!ok){nxt(SN);return drawSnake(`<b style="color:${me.col}">${esc(me.name)}</b> trả lời chưa đúng, đứng yên.`)}$('#sq2').disabled=true;
+    rollDice(v=>{let p=Math.min(SLN,me.pos+v),m=`<b style="color:${me.col}">${esc(me.name)}</b> tung được ${v}`;const to=SLMAP[p];
+      if(to){m+=to>p?`, leo thang lên ô ${to}!`:`, bị rắn kéo xuống ô ${to}!`;to>p?(SFX.ding(),party({particleCount:60})):SFX.buzz();p=to}else SFX.pop();
+      me.pos=p;if(p>=SLN){SFX.fan();return fin()}nxt(SN);drawSnake(m)})});
+}
+
+/* Bingo: each team has a card of answers; revealed answers are marked */
+let BG;
+function startBingo(s,teams){const ans=[...new Set(s.items.map(x=>x.a))];if(ans.length<4){toast('Bingo cần ít nhất 4 đáp án khác nhau trong bộ câu hỏi',5000);return chooseMode(sets.indexOf(s))}
+  const n=ans.length>=9?3:2;BG={s,n,Q:shuffle(s.items),k:0,teams:teams.map(t=>({...t,card:shuffle(ans).slice(0,n*n),hit:Array(n*n).fill(0),bingo:false}))};drawBingo()}
+function drawBingo(){const it=BG.Q[BG.k%BG.Q.length],n=BG.n;
+  P().innerHTML=playHead('Bingo',`<span class="pts">Câu ${BG.k+1}</span>${endBtn('gend')}`)+teamBar(BG.teams,-1)+`<div class="qcard flat">${qi(BG.s,it)}<div class="q-big">${esc(it.q)}</div><div id="gans"></div><div class="row" style="justify-content:center;gap:10px" id="gb"><button class="big b-gold" id="grv">Xem đáp án</button></div></div>
+  <div class="bcards">${BG.teams.map((t,ti)=>`<div class="bcard" style="--c:${t.col}"><div class="bh"><img src="${t.av}" alt="">${esc(t.name)}${t.bingo?' – BINGO!':''}</div><div class="bgrid" style="--n:${n}">${t.card.map((a,ci)=>`<div class="bcell ${t.hit[ci]?'hit':''}" id="b${ti}_${ci}">${esc(a)}</div>`).join('')}</div></div>`).join('')}</div>`;
+  $('#gend').onclick=()=>podium(BG.teams,()=>setupTeams(BG.s,'bingo'));
+  $('#grv').onclick=()=>{SFX.pop();$('#gans').innerHTML=`<div class="ans pop">${esc(it.a)}</div><p class="muted">Đội nào có đáp án này trên thẻ sẽ được đánh dấu (+5).</p>`;
+    let any=false;const winners=[];
+    BG.teams.forEach((t,ti)=>{t.card.forEach((a,ci)=>{if(a===it.a&&!t.hit[ci]){t.hit[ci]=1;t.score+=5;any=true;const el=$('#b'+ti+'_'+ci);if(el)el.classList.add('hit','pop')}});
+      if(!t.bingo&&lines(n,n,n).some(L=>L.every(i=>t.hit[i]))){t.bingo=true;t.score+=30;winners.push(t)}setScore(ti,t)});
+    if(any)SFX.ding();
+    if(winners.length){SFX.fan();party({particleCount:180,spread:120});modal(`<div class="pcard"><div class="ptitle">BINGO!</div>${winners.map(t=>`<img class="mascot-sm" src="${t.av}" alt=""><p><b>${esc(t.name)}</b> +30</p>`).join('')}<button class="big b-gold" onclick="closeModal()">Tiếp tục</button></div>`)}
+    $('#gb').innerHTML='<button class="big b-teal" id="gnx">Câu tiếp →</button>';
+    $('#gnx').onclick=()=>{BG.k++;if(BG.teams.every(t=>t.bingo)||BG.k>=BG.Q.length)return podium(BG.teams,()=>setupTeams(BG.s,'bingo'));drawBingo()}};
+}
+
+/* Plinko: answer right, choose a drop point, ball bounces into a score slot */
+const PSLOT=[10,30,5,50,100,50,5,30,10];
+let PK;
+function startPlinko(s,teams,items){PK={s,teams,turn:0,Q:items,k:0};drawPlinko()}
+function drawPlinko(){const me=PK.teams[PK.turn];let pegs='';
+  for(let r=0;r<8;r++)for(let k=1;k<9;k++){const x=(k+(r%2?.5:0))/9*100;if(x<97)pegs+=`<i class="peg" style="left:${x}%;top:${(r+1.5)/10*84}%"></i>`}
+  P().innerHTML=playHead('Thả bi Plinko',endBtn('lend'))+teamBar(PK.teams,PK.turn)+`<p class="turn" id="lmsg"><b style="color:${me.col}">${esc(me.name)}</b>: trả lời đúng để được thả bi</p>
+  <div class="pdrops">${PSLOT.map((_,i)=>`<button class="pdrop" data-d="${i}" disabled aria-label="Thả ở cột ${i+1}">▼</button>`).join('')}</div>
+  <div class="pboard">${pegs}${PSLOT.map((v,i)=>`<div class="pslot ${v>=50?'big':''}" id="ps${i}" style="left:${i/9*100}%;width:${100/9}%">${v}</div>`).join('')}<div class="pball" id="pball" hidden></div></div>
+  <div class="row" style="justify-content:center;margin-top:14px" id="lbtn"><button class="big b-gold" id="lq">Nhận câu hỏi</button></div>`;
+  $('#lend').onclick=()=>podium(PK.teams,()=>setupTeams(PK.s,'plinko'));
+  $('#lq').onclick=()=>askQ(PK.s,qOf(PK),me,ok=>{if(!ok){nxt(PK);return drawPlinko()}$('#lbtn').innerHTML='';$('#lmsg').innerHTML='Chọn chỗ thả bi ở hàng mũi tên phía trên!';
+    $$('#v-play .pdrop').forEach(b=>{b.disabled=false;b.onclick=()=>{$$('#v-play .pdrop').forEach(x=>x.disabled=true);dropBall(+b.dataset.d,me)}})});
+}
+function dropBall(c,me){const b=$('#pball'),i=PK.turn;b.hidden=false;let r=-1;const place=top=>{b.style.left=((c+.5)/9*100)+'%';b.style.top=top+'%'};place(2);
+  const step=()=>{r++;if(r<8){c=Math.max(0,Math.min(8,c+(Math.random()<.5?-.5:.5)));place((r+1.5)/10*84);beep(820+r*50,.03,.08);setTimeout(step,250);return}
+    c=Math.round(c);place(92);setTimeout(()=>{const v=PSLOT[c];me.score+=v;$('#ps'+c).classList.add('lit');SFX.ding();party({particleCount:v>=50?150:60});setScore(i,me);floatPts(i,'+'+v);
+      $('#lmsg').innerHTML=`<b style="color:${me.col}">${esc(me.name)}</b> được <b>${v}</b> điểm!`;$('#lbtn').innerHTML='<button class="big b-gold" id="lnx">Đội tiếp theo</button>';$('#lnx').onclick=()=>{nxt(PK);drawPlinko()}},350)};
+  setTimeout(step,300)}
+
+/* Basketball: answer right, stop the power meter in the green zone */
+let BB;
+function startBball(s,teams,items){BB={s,teams,turn:0,Q:items,k:0};drawBball()}
+function drawBball(){const me=BB.teams[BB.turn];
+  P().innerHTML=playHead('Ném bóng rổ',endBtn('kend'))+teamBar(BB.teams,BB.turn)+`<p class="turn" id="kmsg"><b style="color:${me.col}">${esc(me.name)}</b>: trả lời đúng để được ném bóng</p>
+  <div class="court"><div class="hoop"><i class="board"></i><i class="rim"></i><i class="net"></i></div><img class="kmasc" src="${me.av}" alt=""><div class="ball" id="kball"></div></div>
+  <div class="meter" id="kmeter" hidden><i class="zone"></i><i class="perfect"></i><i class="needle" id="kneedle"></i></div>
+  <div class="row" style="justify-content:center;margin-top:14px" id="kbtn"><button class="big b-gold" id="kq">Nhận câu hỏi</button></div>`;
+  $('#kend').onclick=()=>{stopTimer();podium(BB.teams,()=>setupTeams(BB.s,'bball'))};
+  $('#kq').onclick=()=>askQ(BB.s,qOf(BB),me,ok=>{if(!ok){nxt(BB);return drawBball()}$('#kmeter').hidden=false;$('#kmsg').innerHTML='Bấm <b>NÉM!</b> khi kim trắng nằm trong vùng xanh';
+    $('#kbtn').innerHTML='<button class="big b-red" id="kshoot">NÉM!</button>';let x=0,dir=1;const sp=1.6+Math.random()*1.4,nd=$('#kneedle');
+    stopTimer();timer=setInterval(()=>{x+=dir*sp;if(x>=100){x=100;dir=-1}if(x<=0){x=0;dir=1}nd.style.left=x+'%'},16);
+    $('#kshoot').onclick=()=>{stopTimer();$('#kshoot').disabled=true;const d=Math.abs(x-50);shoot(d<5?3:d<16?2:0,me)}});
+}
+function shoot(res,me){const i=BB.turn;$('#kball').classList.add(res?'in':'miss');SFX.whoosh();
+  setTimeout(()=>{if(res){const p=res*10;me.score+=p;SFX.ding();party();$('#kmsg').innerHTML=res===3?'<b>QUÁ ĐỈNH! Vào rổ +30</b>':'<b>Vào rổ! +20</b>';setScore(i,me);floatPts(i,'+'+p)}else{SFX.buzz();$('#kmsg').innerHTML='<b>Trượt rồi!</b>'}
+    $('#kbtn').innerHTML='<button class="big b-gold" id="knx">Đội tiếp theo</button>';$('#knx').onclick=()=>{nxt(BB);drawBball()}},1050)}
+
+/* Story Dice: roll pictures + lesson words, tell a story in English */
+const ICONS=['🏖️','🐶','🍕','🚀','🎂','🌧️','🏰','🚲','📱','🎁','👻','🦁','✈️','🌙','⚽','🍦','🎸','🐉','🏫','💰','🌋','🧙','🚂','🌈','🐱','🍎','⏰','🔑'];
+let SD;
+function startStory(s,teams){SD={s,teams,turn:0,dice:[]};drawStory()}
+function drawStory(){const me=SD.teams[SD.turn];stopTimer();
+  P().innerHTML=playHead('Xúc xắc kể chuyện',endBtn('dend'))+teamBar(SD.teams,SD.turn)+`<p class="turn"><b style="color:${me.col}">${esc(me.name)}</b>: tung xúc xắc rồi kể một câu chuyện ngắn bằng tiếng Anh, dùng hết những gì hiện ra!</p>
+  <div class="sdice">${(SD.dice.length?SD.dice:Array(6).fill({t:'?'})).map((d,i)=>`<div class="sdie ${d.w?'word':''}" style="--r:${(i%3-1)*4}deg">${esc(d.t)}</div>`).join('')}</div>
+  <div class="tleft" id="stime" style="text-align:center;color:#fff;min-height:1.6em"></div>
+  <div class="row" style="justify-content:center;gap:10px;margin-top:10px">${SD.dice.length?`<button class="big b-teal" id="sdt">Bấm giờ 60 giây</button><button class="big b-green" data-sp="10">+10</button><button class="big b-green" data-sp="20">+20</button><button class="big b-green" data-sp="30">+30</button><button class="big b-ghost" data-sp="0">Lượt sau</button>`:`<button class="big b-gold" id="sdr">Tung xúc xắc</button>`}</div>`;
+  $('#dend').onclick=()=>{stopTimer();podium(SD.teams,()=>setupTeams(SD.s,'story'))};
+  if($('#sdr'))$('#sdr').onclick=()=>{$('#sdr').disabled=true;const words=shuffle([...new Set(SD.s.items.map(x=>x.a).filter(a=>a.length<=14))]).slice(0,2),icons=shuffle(ICONS).slice(0,6-words.length);let n=0;const els=$$('#v-play .sdie');
+    const t=setInterval(()=>{els.forEach(e=>e.textContent=pick(ICONS));beep(400+Math.random()*500,.03,.07);if(++n>14){clearInterval(t);SD.dice=shuffle([...icons.map(t=>({t})),...words.map(t=>({t,w:1}))]);SFX.ding();drawStory()}},80)};
+  if($('#sdt'))$('#sdt').onclick=()=>{stopTimer();let left=60;$('#stime').textContent=left;timer=setInterval(()=>{left--;const e=$('#stime');if(e)e.textContent=left>0?left:'Hết giờ!';if(left<=5&&left>0)beep(990,.05);if(left<=0){stopTimer();SFX.buzz()}},1000)};
+  $$('#v-play [data-sp]').forEach(b=>b.onclick=()=>{const i=SD.turn,p=+b.dataset.sp;me.score+=p;if(p){SFX.ding();party({particleCount:70})}SD.dice=[];nxt(SD);drawStory();if(p)floatPts(i,'+'+p)});
+}
+
+/* Secret gift boxes: answer right to open a box with a surprise */
+const PRIZES=[{t:'+10',f:10},{t:'+20',f:20},{t:'+30',f:30},{t:'+50',f:50},{t:'×2',x:2},{t:'−10',f:-10},{t:'Hộp rỗng',f:0},{t:'STEAL 10',steal:10},{t:'SWAP',swap:1},{t:'+15',f:15},{t:'+25',f:25},{t:'BOOM',boom:1}];
+let BX;
+function startBoxes(s,teams,items){BX={s,teams,turn:0,Q:items,k:0,boxes:shuffle(PRIZES).map(p=>({p,open:false}))};drawBoxes()}
+function drawBoxes(){const me=BX.teams[BX.turn];
+  P().innerHTML=playHead('Hộp quà bí mật',endBtn('oend'))+teamBar(BX.teams,BX.turn)+`<p class="turn"><b style="color:${me.col}">${esc(me.name)}</b>: chọn một hộp quà, trả lời đúng để mở!</p><div class="gifts">${BX.boxes.map((b,i)=>`<button class="gift g${i%3} ${b.open?'open':''}" data-g="${i}" ${b.open?'disabled':''}><span class="gb">${b.open?esc(b.p.t):i+1}</span></button>`).join('')}</div>`;
+  $('#oend').onclick=()=>podium(BX.teams,()=>setupTeams(BX.s,'boxes'));
+  $$('#v-play [data-g]').forEach(el=>el.onclick=()=>{const g=+el.dataset.g,i=BX.turn;el.classList.add('shakeit');askQ(BX.s,qOf(BX),me,ok=>{if(!ok){nxt(BX);return drawBoxes()}
+    const box=BX.boxes[g],p=box.p,before=me.score;box.open=true;let msg='';
+    if(p.boom){me.score=0;msg='Mất hết điểm!'}else if(p.x){me.score*=2;msg='Nhân đôi số điểm!'}
+    else if(p.steal){const top=lead(BX,me),v=top?Math.min(p.steal,top.score):0;if(top){top.score-=v;me.score+=v}msg=v?'Lấy '+v+' điểm của '+esc(top.name):'Chưa có điểm để lấy'}
+    else if(p.swap){const top=lead(BX,me);if(top&&top.score>me.score){[top.score,me.score]=[me.score,top.score];msg='Đổi điểm với '+esc(top.name)+'!'}else msg='Bạn đang dẫn đầu nên không đổi'}
+    else{me.score=Math.max(0,me.score+p.f);msg=p.f?(p.f>0?'+':'')+p.f+' điểm':'Hộp rỗng, tiếc quá!'}
+    const d=me.score-before;if(d>0){SFX.ding();party()}else if(p.boom)SFX.boom();else SFX.buzz();nxt(BX);drawBoxes();if(d)floatPts(i,(d>0?'+':'')+d,d>0);
+    modal(`<div class="pcard"><div class="ptitle">${esc(p.t)}</div><img class="mascot-sm ${d<0?'grey':''}" src="${me.av}" alt=""><p><b>${esc(me.name)}</b>: ${msg}</p><button class="big b-gold" id="gx">Tiếp tục</button></div>`);
+    $('#gx').onclick=()=>{closeModal();if(BX.boxes.every(b=>b.open))podium(BX.teams,()=>setupTeams(BX.s,'boxes'))}})});
+}
 
 /* Quiz */
 function startQuiz(s){const Q=shuffle(s.items);let k=0,score=0,right=0;const all=[...new Set(s.items.map(x=>x.a))];
