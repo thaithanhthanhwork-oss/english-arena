@@ -6,7 +6,7 @@
 </head><body>
 <title>Languages Time Games</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Nunito:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Montserrat:wght@700;800;900&family=Nunito:wght@400;600;800&display=swap">
 <style>
 /* Layout: one-column classroom app; navy brand band with mascot; big tappable tiles; single brand look (Languages Time: navy / teal / golden / white) */
 :root{--bg:#F7F8FA;--card:#FFFFFF;--ink:#0D1B3D;--mute:#56657F;--line:#D6DEE7;--coral:#F4B23A;--leaf:#1F9D6B;--sun:#F4B23A;--sky:#2A6F84;--grape:#1E3566;--bad:#D6453D;--navy:#0D1B3D;--teal:#2A6F84;--gold:#F4B23A;--tint:#E6F0F3;
@@ -108,6 +108,95 @@ label{font-weight:800;font-size:.85rem;letter-spacing:.03em;color:var(--mute);di
 #modal{position:fixed;inset:0;background:rgba(18,50,74,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
 #modal .box{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:20px;width:min(640px,100%);max-height:90vh;overflow:auto;box-sizing:border-box}
 #toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;z-index:60;max-width:calc(100% - 32px)}
+
+/* ===== GAME STAGE (full screen, navy board with brand orbit glow) ===== */
+#v-play{position:fixed;inset:0;z-index:40;overflow-y:auto;-webkit-overflow-scrolling:touch;color:#fff;font-family:"Fredoka",var(--body);box-sizing:border-box;
+background:radial-gradient(900px 500px at 85% -10%,rgba(62,143,166,.5),transparent 60%),radial-gradient(700px 500px at -10% 110%,rgba(244,178,58,.2),transparent 60%),linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px) 0 0/34px 34px,linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px) 0 0/34px 34px,#0D1B3D;
+padding:calc(env(safe-area-inset-top,0px) + 12px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 28px) max(16px,env(safe-area-inset-left,0px))}
+#v-play>*{max-width:1100px;margin-left:auto;margin-right:auto}
+#v-play h2,#v-play h3,#v-play .q-big,#v-play .stat{font-family:"Fredoka",var(--disp);font-weight:700}
+#v-play .muted{color:#AFC0D6}
+#v-play .panel{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.16);color:#fff}
+#v-play .q-big{color:#fff}
+#v-play .pts{color:var(--navy)}
+#v-play button.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5);box-shadow:none}
+.shead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.shead h2{font-size:clamp(1.15rem,3.5vw,1.9rem);text-align:center;flex:1;min-width:0;overflow-wrap:anywhere}
+.ib{width:46px;height:46px;padding:0;border-radius:14px;background:#fff;color:var(--navy);font-size:1.2rem;border-color:#fff;box-shadow:0 4px 0 #8FA3BF;flex:none}
+.big{font-family:"Fredoka",var(--body);font-weight:700;font-size:clamp(1.05rem,2.6vw,1.4rem);padding:14px 26px;border-radius:16px;border:none;box-shadow:0 6px 0 rgba(0,0,0,.35);transform:rotate(var(--r,0deg))}
+.big:hover{filter:brightness(1.08);transform:translateY(-2px) rotate(var(--r,0deg))}
+.b-gold{background:var(--gold);color:var(--navy)}.b-teal{background:#2A9DB5;color:#fff}.b-green{background:#22B573;color:#fff}.b-red{background:#E8503A;color:#fff}.b-ghost{background:rgba(127,140,160,.25);color:inherit}
+.stitle{text-align:center;font-size:clamp(1.6rem,5vw,2.6rem);margin:6px 0 16px;color:#fff}
+.stitle::after{content:"";display:block;width:90px;height:6px;border-radius:6px;background:var(--gold);margin:8px auto 0}
+.nums{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.num{width:clamp(56px,12vw,84px);aspect-ratio:1;font-family:"Fredoka";font-weight:700;font-size:clamp(1.6rem,5vw,2.4rem);background:#fff;color:var(--navy);border:none;border-radius:14px;transform:rotate(var(--r));box-shadow:0 6px 0 #8FA3BF}
+.num.sel{background:var(--gold);box-shadow:0 6px 0 #B9801C}
+.avs{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:22px 0 10px}
+.av{width:118px;text-align:center;animation:bob 2.4s ease-in-out infinite}
+.av img{height:110px;width:auto;filter:drop-shadow(0 6px 0 var(--c))}
+.av input{margin-top:6px;text-align:center;font-family:"Fredoka";font-weight:600;background:rgba(255,255,255,.1);color:#fff;border:2px solid var(--c);padding:6px}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.sl{display:flex;align-items:center;gap:12px;max-width:640px;margin:12px auto;flex-wrap:wrap}
+.sic{width:44px;height:44px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;font-weight:800;font-size:1.2rem;flex:none}
+.sl input[type=range]{flex:1;min-width:150px;accent-color:var(--gold);height:28px;background:transparent;border:none;padding:0}
+.sl b{min-width:150px;font-weight:600}
+.modes{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.mode{display:flex;flex-direction:column;gap:6px;align-items:flex-start;text-align:left;padding:18px;border:none;border-radius:20px;transform:rotate(var(--r));box-shadow:0 8px 0 rgba(0,0,0,.35);font-family:"Fredoka"}
+.mode b{font-size:1.3rem}.mode small{font-family:var(--body);font-weight:600;opacity:.85;font-size:.9rem}
+.mode .mi{width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.3);display:grid;place-items:center;font-size:1.7rem;font-weight:700}
+.mode:hover{transform:translateY(-4px) rotate(var(--r))}
+.k0{background:var(--gold);color:var(--navy)}.k1{background:#2A9DB5;color:#fff}.k2{background:#fff;color:var(--navy)}
+.tbar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}
+.tc{position:relative;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:3px solid transparent;border-radius:18px;padding:6px 14px 6px 6px;min-width:0;transition:transform .2s}
+.tc img{width:48px;height:48px;object-fit:contain;background:var(--c);border-radius:14px;padding:2px}
+.tc .tn{font-weight:600;font-size:.95rem}.tc .ts{font-size:1.6rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.tc.cur{border-color:var(--c);background:rgba(255,255,255,.16);transform:scale(1.06);animation:glow 1.2s ease-in-out infinite}
+@keyframes glow{50%{box-shadow:0 0 22px var(--c)}}
+.fly{position:absolute;right:6px;top:-6px;font-weight:700;font-size:1.6rem;color:#7CFFB2;animation:fly 1.2s ease-out forwards;pointer-events:none}
+.fly.neg{color:#FF8A7A}
+@keyframes fly{to{transform:translateY(-46px);opacity:0}}
+.turn{text-align:center;font-size:1.15rem;margin:4px 0 14px}
+#v-play .tiles{grid-template-columns:repeat(auto-fill,minmax(clamp(66px,14vw,110px),1fr));gap:clamp(8px,1.6vw,16px)}
+#v-play .tile{font-family:"Fredoka";font-weight:700;font-size:clamp(1.6rem,4.5vw,2.6rem);border:none;border-radius:14px;transform:rotate(var(--r));transition:transform .15s}
+#v-play .tile.k0{box-shadow:0 7px 0 #B9801C}#v-play .tile.k1{box-shadow:0 7px 0 #1C6E80}#v-play .tile.k2{box-shadow:0 7px 0 #8FA3BF}
+#v-play .tile:hover{transform:translateY(-4px) rotate(var(--r)) scale(1.04)}
+#v-play .tile.used{opacity:.12}
+.tile.in{animation:drop .45s backwards cubic-bezier(.3,1.5,.5,1)}
+@keyframes drop{from{transform:translateY(-40px) scale(.6);opacity:0}}
+.tile.flip{animation:flip .32s forwards}
+@keyframes flip{to{transform:rotateY(90deg) scale(1.15)}}
+#modal .box{animation:zin .28s cubic-bezier(.3,1.4,.5,1)}
+@keyframes zin{from{transform:scale(.7);opacity:0}}
+.box.shake,#v-play.shake{animation:shake .45s}
+@keyframes shake{20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.qcard,.pcard{text-align:center;font-family:"Fredoka",var(--body)}
+.qcard .q-big{font-family:"Fredoka";font-weight:700}
+.who{display:inline-flex;align-items:center;gap:6px;font-weight:700}.who img{width:34px;height:34px;border-radius:10px;background:var(--c);object-fit:contain}
+.tleft{font-weight:700;font-size:1.4rem;color:var(--teal)}
+.ptitle{font-family:"Fredoka";font-weight:700;font-size:clamp(2rem,8vw,3.2rem);color:var(--teal);animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+.ans.pop{animation:pop .4s cubic-bezier(.3,1.6,.5,1);font-family:"Fredoka";font-weight:700}
+.grey{filter:grayscale(1) brightness(.8)}
+.qcard.flat{background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.16);border-radius:20px;padding:16px;margin-top:12px}
+.parena{display:flex;align-items:center;justify-content:center;gap:clamp(14px,5vw,48px);margin:14px 0}
+.holder{text-align:center}.holder img{height:clamp(110px,22vw,170px);filter:drop-shadow(0 6px 0 var(--c))}.holder b{display:block;font-size:1.2rem}
+.spud{position:relative;width:clamp(120px,24vw,190px);aspect-ratio:1.15;border-radius:52% 48% 55% 45%/58% 52% 48% 42%;background:radial-gradient(circle at 30% 30%,#F8D58A,#D9A04A 55%,#A8692A);box-shadow:inset -10px -14px 0 rgba(0,0,0,.15),0 10px 0 rgba(0,0,0,.3)}
+.spud::before,.spud::after{content:"";position:absolute;width:9%;aspect-ratio:1;border-radius:50%;background:#8A5520;opacity:.6}
+.spud::before{left:22%;top:62%}.spud::after{left:72%;top:58%}
+.spud .face{position:absolute;left:30%;top:36%;width:40%;height:32%;background:radial-gradient(circle at 20% 30%,#0D1B3D 0 9%,transparent 10%),radial-gradient(circle at 80% 30%,#0D1B3D 0 9%,transparent 10%),radial-gradient(ellipse 30% 22% at 50% 80%,#0D1B3D 0 60%,transparent 64%)}
+.spud .fuse{position:absolute;top:-14%;left:56%;width:16%;height:22%;border:5px solid #3B2A1A;border-color:#3B2A1A #3B2A1A transparent transparent;border-radius:0 60% 0 0}
+.spud .spark{position:absolute;top:-26%;left:66%;width:22%;aspect-ratio:1;border-radius:50%;background:radial-gradient(#fff,#FFD24A 40%,#FF6A2A 60%,transparent 70%);animation:sp .15s infinite alternate}
+.spud.live{animation:wob .45s ease-in-out infinite alternate}
+.spud.hot{animation-duration:.12s;background:radial-gradient(circle at 30% 30%,#FFC9A0,#F0743A 55%,#B5361A)}
+.spud.toss{animation:toss .55s cubic-bezier(.3,1.4,.5,1)}
+@keyframes toss{from{transform:translate(-45vw,-80px) rotate(-360deg) scale(.6)}}
+.boom{font-size:clamp(3rem,13vw,5rem)}
+.podium{display:flex;justify-content:center;align-items:flex-end;gap:clamp(8px,3vw,28px);margin-top:10px}
+.pod{text-align:center;flex:0 1 200px;min-width:0}.pod img{height:clamp(80px,17vw,150px);filter:drop-shadow(0 6px 0 var(--c));animation:bob 2s ease-in-out infinite}
+.pod .tn{font-weight:700;font-size:1.05rem;overflow-wrap:anywhere}.pod .ts{font-size:1.8rem;font-weight:700;color:var(--gold)}
+.pod .step{background:var(--c);color:var(--navy);font-weight:700;font-size:2.2rem;border-radius:16px 16px 0 0;margin-top:6px;display:grid;place-items:center}
+.p1{order:2}.p1 .step{height:150px}.p1 img{height:clamp(110px,23vw,190px)}.p2{order:1}.p2 .step{height:105px}.p3{order:3}.p3 .step{height:75px}
+.rest{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:12px;color:#C9D6E6}
+@media(prefers-reduced-motion:reduce){.av,.pod img,.tc.cur,.spud.live,.spud.toss,.tile.in,.tile.flip,#modal .box,.ptitle{animation:none!important}}
 </style>
 
 <div class="wrap">
@@ -203,6 +292,7 @@ label{font-weight:800;font-size:.85rem;letter-spacing:.03em;color:var(--mute);di
 <div id="modal" hidden><div class="box" id="mbox"></div></div>
 <div id="toast" hidden></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -211,9 +301,9 @@ const pick=a=>a[Math.random()*a.length|0];
 const store={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
 const line=x=>x.q+' | '+x.a+(x.img?' | @'+x.img:'');
 const qi=(s,it)=>it.img&&s.imgs&&s.imgs[it.img]?`<img class="qimg" src="${s.imgs[it.img]}" alt="">`:'';
-let AC;function beep(f=880,d=.06,v=.12){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
+let AC;function beep(f=880,d=.06,v=.12,ty='sine'){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
 let toastT;function toast(t,ms=3200){const el=$('#toast');el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,ms)}
-function modal(html){$('#mbox').innerHTML=html;$('#modal').hidden=false}
+function modal(html){$('#mbox').className='box';$('#mbox').innerHTML=html;$('#modal').hidden=false}
 function closeModal(){$('#modal').hidden=true}
 function show(v){$$('.view').forEach(x=>x.hidden=x.id!=='v-'+v);stopTimer();window.scrollTo(0,0)}
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){show(g.dataset.go);if(g.dataset.go==='home')renderHome()}});
@@ -316,14 +406,12 @@ $('#ed-ai').onclick=async()=>{const src=$('#ed-src').value.trim();if(src.length<
 
 /* ---------- GAME MODES ---------- */
 const MODES=[['grid','Bảng ô số (theo đội)','Kiểu Baamboozle: các đội lần lượt chọn ô, có ô may mắn / xui xẻo.'],['potato','Khoai tây nóng (theo đội)','Trả lời đúng để chuyền củ khoai sang đội khác trước khi nó nổ. Không ai biết khi nào nổ!'],['quiz','Quiz 4 đáp án','Chọn đáp án đúng trước khi hết giờ.'],['match','Lật thẻ ghép cặp','Tìm cặp câu hỏi – đáp án.'],['scramble','Sắp xếp chữ','Xếp lại chữ cái / từ thành đáp án đúng.'],['flash','Thẻ ghi nhớ','Lật thẻ để ôn nhanh.']];
-function chooseMode(i){const s=sets[i];
-  modal(`<h2>${esc(s.title)}</h2><p class="muted">Chọn kiểu chơi</p><div style="display:grid;gap:10px">${MODES.map(m=>`<button data-mode="${m[0]}" style="text-align:left"><div>${m[1]}</div><div class="muted" style="font-weight:600">${m[2]}</div></button>`).join('')}</div>
-  <label for="m-teams">Số đội (cho trò theo đội)</label><select id="m-teams"><option>2</option><option>3</option><option>4</option></select>
-  <div class="row" style="margin-top:12px"><button class="ghost" onclick="closeModal()">Đóng</button></div>`);
-  $$('#mbox [data-mode]').forEach(b=>b.onclick=()=>{const t=+$('#m-teams').value;closeModal();show('play');({grid:()=>startGrid(s,t),potato:()=>startPotato(s,t),quiz:()=>startQuiz(s),match:()=>startMatch(s),scramble:()=>startScramble(s),flash:()=>startFlash(s)})[b.dataset.mode]()});
-}
+const MI={grid:'#',potato:'🥔',quiz:'?',match:'❖',scramble:'Ab',flash:'▣'};
+function chooseMode(i){const s=sets[i];show('play');
+  P().innerHTML=playHead(s.title)+`<h2 class="stitle">Chọn trò chơi</h2><div class="modes">${MODES.map((m,k)=>`<button class="mode k${k%3}" data-mode="${m[0]}" style="--r:${(k%3-1)*1.5}deg"><span class="mi">${MI[m[0]]}</span><b>${m[1]}</b><small>${m[2]}</small></button>`).join('')}</div>`;
+  $$('#v-play [data-mode]').forEach(b=>b.onclick=()=>{SFX.pop();({grid:()=>setupTeams(s,'grid'),potato:()=>setupTeams(s,'potato'),quiz:()=>startQuiz(s),match:()=>startMatch(s),scramble:()=>startScramble(s),flash:()=>startFlash(s)})[b.dataset.mode]()})}
 const P=()=>$('#v-play');
-const playHead=(t,extra='')=>`<div class="row" style="justify-content:space-between"><h2>${esc(t)}</h2><div class="row">${extra}<button class="ghost" data-go="home">Thoát</button></div></div>`;
+const playHead=(t,extra='')=>`<div class="shead"><button class="ib" data-go="home" aria-label="Thoát">✕</button><h2>${esc(t)}</h2><div class="row" style="flex-wrap:nowrap">${extra}<button class="ib" aria-label="Toàn màn hình" onclick="toggleFS()">⛶</button></div></div>`;
 let timer=null;function stopTimer(){clearInterval(timer);timer=null}
 const norm=s=>String(s).toLowerCase().replace(/[^a-z0-9' ]/g,' ').replace(/\s+/g,' ').trim();
 
@@ -339,49 +427,88 @@ const POWERS=[
  {t:'DOUBLE',d:'Nhân đôi điểm hiện có!',f:(G,me)=>me.score*=2}];
 const lead=(G,me)=>G.teams.filter(x=>x!==me).sort((a,b)=>b.score-a.score)[0];
 let G;
-function startGrid(s,n){
-  const qs=shuffle(s.items).map(it=>({it,pts:pick([5,10,10,15,20,25])}));
-  const ps=Array.from({length:Math.max(2,Math.round(qs.length*.25))},()=>({p:pick(POWERS)}));
-  G={s,teams:TEAMS.slice(0,n).map(name=>({name,score:0})),turn:0,tiles:shuffle([...qs,...ps]).map(x=>({...x,used:false}))};renderGrid();
-}
-function renderGrid(){
-  P().innerHTML=playHead(G.s.title)+`<div class="board">${G.teams.map((t,i)=>`<div class="team ${i===G.turn?'cur':''}"><span>${t.name}</span><span class="s">${t.score}</span></div>`).join('')}</div>
-  <p class="muted">Lượt của <b>${G.teams[G.turn].name}</b> – chọn một ô.</p><div class="tiles">${G.tiles.map((t,i)=>`<button class="tile c${i%5} ${t.used?'used':''}" data-t="${i}">${i+1}</button>`).join('')}</div>`;
-  $$('#v-play [data-t]').forEach(b=>b.onclick=()=>openTile(+b.dataset.t));
-  if(G.tiles.every(t=>t.used)){const w=[...G.teams].sort((a,b)=>b.score-a.score);modal(`<img class="mascot-sm" src="img/mascot-wave.png" alt=""><h2 style="text-align:center">Kết thúc!</h2><p class="q-big">${w[0].name} thắng</p>${w.map(t=>`<div class="row" style="justify-content:space-between"><b>${t.name}</b><span class="stat">${t.score}</span></div>`).join('')}<div class="row" style="margin-top:14px"><button class="pri" onclick="closeModal();startGrid(G.s,G.teams.length)">Chơi lại</button><button class="ghost" onclick="closeModal();show('home');renderHome()">Về trang chủ</button></div>`)}
-}
-function nextTurn(){G.turn=(G.turn+1)%G.teams.length;closeModal();renderGrid()}
-function openTile(i){const t=G.tiles[i],me=G.teams[G.turn];t.used=true;
-  if(t.p){t.p.f(G,me);modal(`<div style="text-align:center"><div class="q-big" style="color:var(--coral)">${t.p.t}</div><p>${me.name}: ${t.p.d}</p><button class="pri" id="nx">Tiếp tục</button></div>`);$('#nx').onclick=nextTurn;return}
-  modal(`<div style="text-align:center"><span class="pts">${t.pts} điểm</span> <span class="muted">${me.name}</span>${qi(G.s,t.it)}<div class="q-big">${esc(t.it.q)}</div>
-  <div class="bar"><i id="tb" style="width:100%"></i></div><div id="ar"><button class="sun" id="rv">Xem đáp án</button></div></div>`);
-  let left=30;timer=setInterval(()=>{left--;const b=$('#tb');if(b)b.style.width=(left/30*100)+'%';if(left<=0)stopTimer()},1000);
-  $('#rv').onclick=()=>{stopTimer();$('#ar').innerHTML=`<div class="ans">${esc(t.it.a)}</div><div class="row" style="justify-content:center;margin-top:14px"><button class="ok" id="ok">Đúng +${t.pts}</button><button class="no" id="no">Sai</button></div>`;
-    $('#ok').onclick=()=>{me.score+=t.pts;nextTurn()};$('#no').onclick=nextTurn};
+/* ===== GAME STAGE: shared team helpers ===== */
+const AV=['img/mascot.png','img/mascot-wave.png','img/m1.png'];
+const TCOL=['#F4B23A','#3EC1D3','#FF8A9A','#A99BFF','#7ED957','#FF9F43'];
+const mkTeams=n=>Array.from({length:n},(_,i)=>({name:'Team '+(i+1),score:0,av:AV[i%AV.length],col:TCOL[i]}));
+const TIMES=[0,10,15,20,30,45,60];
+const SFX={pop:()=>beep(660,.08,.14,'triangle'),ding:()=>{beep(880,.12,.14);setTimeout(()=>beep(1320,.2,.14),110)},buzz:()=>beep(140,.35,.16,'sawtooth'),
+  whoosh:()=>{try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type='triangle';o.frequency.setValueAtTime(300,AC.currentTime);o.frequency.exponentialRampToValueAtTime(1400,AC.currentTime+.25);g.gain.value=.08;g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+.3);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+.3)}catch(e){}},
+  fan:()=>[523,659,784,1047].forEach((f,i)=>setTimeout(()=>beep(f,.22,.13,'triangle'),i*120)),
+  boom:()=>{try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const n=AC.sampleRate*.9|0,b=AC.createBuffer(1,n,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2.5);const s=AC.createBufferSource(),g=AC.createGain(),f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=900;g.gain.value=.7;s.buffer=b;s.connect(f);f.connect(g);g.connect(AC.destination);s.start()}catch(e){}}};
+const party=(o={})=>{try{window.confetti&&confetti({particleCount:90,spread:75,origin:{y:.6},colors:['#F4B23A','#2A9DB5','#FFFFFF','#3EC1D3'],zIndex:70,disableForReducedMotion:true,...o})}catch(e){}};
+function toggleFS(){try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen().catch(()=>toast('Máy này không hỗ trợ toàn màn hình'))}catch(e){}}
+const teamBar=(teams,turn)=>`<div class="tbar">${teams.map((t,i)=>`<div class="tc ${i===turn?'cur':''}" id="tc${i}" style="--c:${t.col}"><img src="${t.av}" alt=""><div><div class="tn">${esc(t.name)}</div><div class="ts">${t.score}</div></div></div>`).join('')}</div>`;
+function floatPts(i,txt,good=true){const el=$('#tc'+i);if(!el)return;const f=document.createElement('div');f.className='fly'+(good?'':' neg');f.textContent=txt;el.appendChild(f);setTimeout(()=>f.remove(),1200)}
+
+/* Setup screen: choose teams, question count, timer */
+let SETUP={n:2,q:0,t:3,names:[]};
+function setupTeams(s,mode){
+  if(!SETUP.q||SETUP.q>s.items.length)SETUP.q=s.items.length;
+  const keep=()=>$$('#v-play [data-nm]').forEach(i=>SETUP.names[+i.dataset.nm]=i.value);
+  const draw=()=>{const n=SETUP.n;
+    P().innerHTML=playHead(mode==='potato'?'Khoai tây nóng':'Bảng ô số')+`<h2 class="stitle">Chọn số đội</h2>
+    <div class="nums">${[2,3,4,5,6].map(k=>`<button class="num ${k<=n?'sel':''}" data-n="${k}" style="--r:${(k%3-1)*3}deg">${k}</button>`).join('')}</div>
+    <div class="avs">${mkTeams(n).map((t,i)=>`<div class="av" style="--c:${t.col};animation-delay:${i*180}ms"><img src="${t.av}" alt=""><input id="nm${i}" value="${esc(SETUP.names[i]||t.name)}" data-nm="${i}" aria-label="Tên đội ${i+1}"></div>`).join('')}</div>
+    <div class="sl"><span class="sic">?</span><input type="range" id="sq" min="2" max="${s.items.length}" value="${SETUP.q}"><b id="sqv"></b></div>
+    ${mode==='grid'?`<div class="sl"><span class="sic">⏱</span><input type="range" id="st" min="0" max="${TIMES.length-1}" value="${SETUP.t}"><b id="stv"></b></div>`:''}
+    <div class="row" style="justify-content:center;gap:14px;margin-top:20px"><button class="big b-gold" id="srand" style="--r:-1deg">Ngẫu nhiên</button><button class="big b-teal" id="sgo" style="--r:1deg">▶ Bắt đầu</button></div>`;
+    const lab=()=>{$('#sqv').textContent=SETUP.q+' câu hỏi (mỗi đội ~'+Math.max(1,Math.floor(SETUP.q/SETUP.n))+')';if($('#stv'))$('#stv').textContent=TIMES[SETUP.t]?'Mỗi câu '+TIMES[SETUP.t]+' giây':'Không bấm giờ'};lab();
+    $$('#v-play [data-n]').forEach(b=>b.onclick=()=>{SFX.pop();keep();SETUP.n=+b.dataset.n;draw()});
+    $('#sq').oninput=e=>{SETUP.q=+e.target.value;lab()};if($('#st'))$('#st').oninput=e=>{SETUP.t=+e.target.value;lab()};
+    $('#srand').onclick=()=>{keep();SETUP.n=2+Math.random()*3|0;SFX.whoosh();draw()};
+    $('#sgo').onclick=()=>{keep();const teams=mkTeams(SETUP.n).map((t,i)=>({...t,name:(SETUP.names[i]||'').trim()||t.name}));SFX.fan();
+      (mode==='potato'?startPotato:startGrid)(s,teams,shuffle(s.items).slice(0,SETUP.q),TIMES[SETUP.t])};
+  };draw();
 }
 
-/* Hot potato: hidden random fuse; correct answer passes the potato; holder loses points when it explodes */
+/* Grid (team board) */
+function startGrid(s,teams,items,tsec){
+  const qs=items.map(it=>({it,pts:pick([5,10,10,15,20,25])}));
+  const ps=Array.from({length:Math.max(2,Math.round(qs.length*.25))},()=>({p:pick(POWERS)}));
+  G={s,teams,turn:0,tsec,tiles:shuffle([...qs,...ps]).map(x=>({...x,used:false}))};renderGrid(true);
+}
+function renderGrid(intro){const me=G.teams[G.turn];
+  P().innerHTML=playHead(G.s.title)+teamBar(G.teams,G.turn)+`<p class="turn">Lượt của <b style="color:${me.col}">${esc(me.name)}</b> – chọn một ô!</p><div class="tiles">${G.tiles.map((t,i)=>`<button class="tile k${i%3} ${t.used?'used':''} ${intro?'in':''}" style="--r:${((i*37)%7-3)*.8}deg;animation-delay:${intro?i*25:0}ms" data-t="${i}">${i+1}</button>`).join('')}</div>`;
+  $$('#v-play [data-t]').forEach(b=>b.onclick=()=>{SFX.pop();b.classList.add('flip');setTimeout(()=>openTile(+b.dataset.t),320)});
+  if(G.tiles.every(t=>t.used))setTimeout(()=>podium(G.teams,()=>setupTeams(G.s,'grid')),500);
+}
+function nextTurn(d){const i=G.turn;closeModal();stopTimer();G.turn=(G.turn+1)%G.teams.length;renderGrid();if(d)floatPts(i,(d>0?'+':'')+d,d>0)}
+function openTile(i){const t=G.tiles[i],me=G.teams[G.turn],before=me.score;t.used=true;
+  if(t.p){t.p.f(G,me);const d=me.score-before;(d>=0?SFX.ding:SFX.buzz)();if(d>0)party({particleCount:60});
+    modal(`<div class="pcard"><div class="ptitle">${t.p.t}</div><img class="mascot-sm" src="${me.av}" alt=""><p>${esc(me.name)}: ${t.p.d}</p><button class="big b-gold" id="nx">Tiếp tục</button></div>`);$('#nx').onclick=()=>nextTurn(d);return}
+  modal(`<div class="qcard"><div class="row" style="justify-content:space-between"><span class="pts">${t.pts} điểm</span><span class="who" style="--c:${me.col}"><img src="${me.av}" alt="">${esc(me.name)}</span></div>${qi(G.s,t.it)}<div class="q-big">${esc(t.it.q)}</div>
+  ${G.tsec?'<div class="tleft" id="tl"></div><div class="bar"><i id="tb" style="width:100%"></i></div>':''}<div id="ar" style="margin-top:12px"><button class="big b-gold" id="rv">Xem đáp án</button></div></div>`);
+  if(G.tsec){let left=G.tsec;$('#tl').textContent=left;timer=setInterval(()=>{left--;const b=$('#tb');if(b)b.style.width=(left/G.tsec*100)+'%';const l=$('#tl');if(l)l.textContent=Math.max(0,left);if(left<=5&&left>0)beep(990,.05);if(left<=0){stopTimer();SFX.buzz();if(l)l.textContent='Hết giờ!'}},1000)}
+  $('#rv').onclick=()=>{stopTimer();SFX.pop();$('#ar').innerHTML=`<div class="ans pop">${esc(t.it.a)}</div><div class="row" style="justify-content:center;margin-top:16px;gap:12px"><button class="big b-green" id="ok">Đúng +${t.pts}</button><button class="big b-red" id="no">Sai</button></div>`;
+    $('#ok').onclick=()=>{me.score+=t.pts;SFX.ding();party();nextTurn(t.pts)};$('#no').onclick=()=>{SFX.buzz();$('#mbox').classList.add('shake');setTimeout(()=>nextTurn(0),450)}};
+}
+function podium(teams,again){stopTimer();const w=[...teams].sort((a,b)=>b.score-a.score);SFX.fan();party({particleCount:160,spread:100});setTimeout(()=>party({particleCount:110,angle:60,origin:{x:0,y:.75}}),300);setTimeout(()=>party({particleCount:110,angle:120,origin:{x:1,y:.75}}),550);
+  P().innerHTML=playHead('Kết quả')+`<h2 class="stitle">${esc(w[0].name)} thắng!</h2><div class="podium">${w.slice(0,3).map((t,i)=>`<div class="pod p${i+1}" style="--c:${t.col}"><img src="${t.av}" alt=""><div class="tn">${esc(t.name)}</div><div class="ts">${t.score}</div><div class="step">${i+1}</div></div>`).join('')}</div>
+  ${w.length>3?`<div class="rest">${w.slice(3).map((t,i)=>`<span>${i+4}. ${esc(t.name)} – ${t.score}</span>`).join('')}</div>`:''}
+  <div class="row" style="justify-content:center;gap:14px;margin-top:22px"><button class="big b-gold" id="pagain">Chơi lại</button><button class="big b-teal" data-go="home">Về trang chủ</button></div>`;
+  $('#pagain').onclick=again}
+
+/* Hot potato: hidden random fuse; a correct answer passes the potato; the holder loses points when it explodes */
 let HP;
-const teamBoard=(teams,turn)=>`<div class="board">${teams.map((t,i)=>`<div class="team ${i===turn?'cur':''}"><span>${t.name}</span><span class="s">${t.score}</span></div>`).join('')}</div>`;
-function startPotato(s,n){HP={s,teams:TEAMS.slice(0,n).map(name=>({name,score:0})),turn:0,Q:shuffle(s.items),k:0,round:1,on:false,ms:0};drawPotato()}
-function drawPotato(){stopTimer();const it=HP.Q[HP.k%HP.Q.length],me=HP.teams[HP.turn];
-  P().innerHTML=playHead('Khoai tây nóng',`<span class="pts">Vòng ${HP.round}</span><button class="ghost" id="pend">Kết thúc</button>`)+teamBoard(HP.teams,HP.turn)+
-  `<div class="panel" style="text-align:center"><div class="potato" id="pot"><div class="fuse"></div>${HP.on?'<div class="spark"></div>':''}<div class="ball">${HP.on?'HOT!':'GO'}</div></div>
-  <p>Củ khoai đang ở <b>${me.name}</b>${HP.on?'':' – bấm “Châm ngòi” để bắt đầu vòng '+HP.round}</p>
-  ${HP.on?qi(HP.s,it)+`<div class="q-big">${esc(it.q)}</div><div id="pans"></div><div class="row" style="justify-content:center"><button class="sun" id="prv">Xem đáp án</button><button class="ok" id="pok">Đúng – chuyền khoai! +10</button><button class="ghost" id="psk">Đổi câu khác</button></div>`:`<button class="pri" id="pgo">Châm ngòi!</button>`}</div>`;
-  $('#pend').onclick=endPotato;
-  if(!HP.on){$('#pgo').onclick=()=>{HP.on=true;HP.ms=(20+Math.random()*40)*1000;drawPotato()};return}
-  $('#prv').onclick=()=>$('#pans').innerHTML=`<div class="ans">${esc(it.a)}</div>`;
-  $('#pok').onclick=()=>{me.score+=10;HP.k++;HP.turn=(HP.turn+1)%HP.teams.length;beep(1200,.12);drawPotato()};
+function startPotato(s,teams,items){HP={s,teams,turn:0,Q:items,k:0,round:1,on:false,ms:0};drawPotato()}
+function drawPotato(toss){stopTimer();const it=HP.Q[HP.k%HP.Q.length],me=HP.teams[HP.turn];
+  P().innerHTML=playHead('Khoai tây nóng',`<span class="pts">Vòng ${HP.round}</span><button class="ghost" id="pend">Kết thúc</button>`)+teamBar(HP.teams,HP.turn)+
+  `<div class="parena"><div class="holder" style="--c:${me.col}"><img src="${me.av}" alt=""><b>${esc(me.name)}</b></div><div class="spud ${HP.on?'live':''} ${toss?'toss':''}" id="pot"><i class="fuse"></i>${HP.on?'<i class="spark"></i>':''}<span class="face"></span></div></div>
+  ${HP.on?`<div class="qcard flat">${qi(HP.s,it)}<div class="q-big">${esc(it.q)}</div><div id="pans"></div><div class="row" style="justify-content:center;gap:10px;margin-top:10px"><button class="big b-gold" id="prv">Xem đáp án</button><button class="big b-green" id="pok">Đúng – chuyền!</button><button class="big b-ghost" id="psk">Câu khác</button></div></div>`
+  :`<p class="turn">Bấm châm ngòi – củ khoai sẽ nổ bất cứ lúc nào!</p><div class="row" style="justify-content:center"><button class="big b-red" id="pgo">Châm ngòi!</button></div>`}`;
+  $('#pend').onclick=()=>{HP.on=false;podium(HP.teams,()=>setupTeams(HP.s,'potato'))};
+  if(!HP.on){$('#pgo').onclick=()=>{HP.on=true;HP.ms=(20+Math.random()*40)*1000;SFX.whoosh();drawPotato()};return}
+  $('#prv').onclick=()=>{SFX.pop();$('#pans').innerHTML=`<div class="ans pop">${esc(it.a)}</div>`};
+  $('#pok').onclick=()=>{const i=HP.turn;me.score+=10;HP.k++;HP.turn=(HP.turn+1)%HP.teams.length;SFX.ding();SFX.whoosh();drawPotato(true);floatPts(i,'+10')};
   $('#psk').onclick=()=>{HP.k++;drawPotato()};
-  let tick=0;timer=setInterval(()=>{HP.ms-=250;tick+=250;const gap=HP.ms<6000?250:HP.ms<15000?500:1000;if(tick>=gap){tick=0;beep(HP.ms<6000?1100:760)}
+  let tick=0;timer=setInterval(()=>{HP.ms-=250;tick+=250;const gap=HP.ms<6000?250:HP.ms<15000?500:1000;if(tick>=gap){tick=0;beep(HP.ms<6000?1100:760,.05,.1)}
     $('#pot')?.classList.toggle('hot',HP.ms<6000);if(HP.ms<=0)boom()},250);
 }
-function boom(){stopTimer();const me=HP.teams[HP.turn];me.score=Math.max(0,me.score-20);beep(110,.7,.35);setTimeout(()=>beep(70,.6,.3),120);
-  HP.on=false;HP.round++;HP.k++;drawPotato();
-  modal(`<div class="boom">BOOM!</div><img class="mascot-sm" src="img/m2.png" alt="" style="width:70px"><p style="text-align:center">Củ khoai nổ ở <b>${me.name}</b>: −20 điểm.</p><div class="row" style="justify-content:center"><button class="pri" onclick="closeModal()">Vòng tiếp theo</button></div>`)}
-function endPotato(){stopTimer();HP.on=false;const w=[...HP.teams].sort((a,b)=>b.score-a.score);
-  modal(`<img class="mascot-sm" src="img/mascot-wave.png" alt=""><h2 style="text-align:center">${w[0].name} thắng!</h2>${w.map(t=>`<div class="row" style="justify-content:space-between"><b>${t.name}</b><span class="stat">${t.score}</span></div>`).join('')}<div class="row" style="margin-top:14px"><button class="pri" onclick="closeModal();startPotato(HP.s,HP.teams.length)">Chơi lại</button><button class="ghost" onclick="closeModal();show('home');renderHome()">Về trang chủ</button></div>`)}
+function boom(){stopTimer();const i=HP.turn,me=HP.teams[i];me.score=Math.max(0,me.score-20);SFX.boom();HP.on=false;HP.round++;HP.k++;
+  party({particleCount:150,spread:130,startVelocity:45,colors:['#FF5A36','#F4B23A','#7A3B12','#FFFFFF'],shapes:['circle']});
+  drawPotato();P().classList.add('shake');setTimeout(()=>P().classList.remove('shake'),600);floatPts(i,'-20',false);
+  modal(`<div class="pcard"><div class="boom">BOOM!</div><img class="mascot-sm grey" src="${me.av}" alt=""><p>Củ khoai nổ ở <b>${esc(me.name)}</b>: −20 điểm.</p><button class="big b-gold" onclick="closeModal()">Vòng tiếp theo</button></div>`)}
 
 /* Quiz */
 function startQuiz(s){const Q=shuffle(s.items);let k=0,score=0,right=0;const all=[...new Set(s.items.map(x=>x.a))];
@@ -390,7 +517,7 @@ function startQuiz(s){const Q=shuffle(s.items);let k=0,score=0,right=0;const all
     P().innerHTML=playHead(s.title,`<span class="pts">${score}</span>`)+`<div class="panel"><div class="muted">Câu ${k+1}/${Q.length}</div>${qi(s,it)}<div class="q-big">${esc(it.q)}</div><div class="bar"><i id="tb" style="width:100%"></i></div>
     <div class="opts">${opts.map((o,i)=>`<button class="c${i}" data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div><div id="fb" class="row" style="justify-content:center;margin-top:12px"></div></div>`;
     const done=(o)=>{stopTimer();$$('#v-play [data-o]').forEach(b=>{b.disabled=true;if(b.dataset.o===it.a){b.disabled=false;b.style.outline='5px solid var(--leaf)'}});
-      if(o===it.a){right++;score+=50+left*5;toast('Chính xác!',1200)}else toast('Đáp án: '+it.a,1800);
+      if(o===it.a){right++;score+=50+left*5;SFX.ding();party({particleCount:60})}else{SFX.buzz();toast('Đáp án: '+it.a,1800)}
       $('#fb').innerHTML='<button class="pri" id="nq">Câu tiếp</button>';$('#nq').onclick=()=>{k++;step()}};
     $$('#v-play [data-o]').forEach(b=>b.onclick=()=>done(b.dataset.o));
     timer=setInterval(()=>{left--;const b=$('#tb');if(b)b.style.width=left/20*100+'%';if(left<=0)done(null)},1000)};
