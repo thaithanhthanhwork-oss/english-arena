@@ -311,6 +311,88 @@ padding:calc(env(safe-area-inset-top,0px) + 12px) max(16px,env(safe-area-inset-r
 .gift.open{background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 3px rgba(255,255,255,.25);opacity:1}
 .gift.open .gb{background:transparent;font-size:clamp(.9rem,2.6vw,1.2rem);text-align:center}
 @media(prefers-reduced-motion:reduce){.mk,.disc.drop,.tok img,.gift,.ball.in,.ball.miss{animation:none!important}}
+
+/* ===== space starfield on the stage ===== */
+#v-play::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.6;background-image:radial-gradient(1.5px 1.5px at 20px 30px,#fff 50%,transparent 51%),radial-gradient(1px 1px at 120px 80px,#fff 50%,transparent 51%),radial-gradient(1.5px 1.5px at 60px 150px,#CFE8FF 50%,transparent 51%),radial-gradient(1px 1px at 170px 190px,#fff 50%,transparent 51%),radial-gradient(2px 2px at 90px 110px,#F4B23A 50%,transparent 51%),radial-gradient(1px 1px at 150px 20px,#fff 50%,transparent 51%);background-size:200px 200px;animation:stars 120s linear infinite}
+@keyframes stars{to{background-position:0 -2000px}}
+/* home live card */
+.livecard{position:relative;overflow:hidden;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:#fff;border-radius:22px;padding:22px;margin-bottom:16px;border:2px solid #2A6F84;
+background:radial-gradient(1.5px 1.5px at 30px 40px,#fff 50%,transparent 51%) 0 0/120px 90px,radial-gradient(1px 1px at 80px 20px,#fff 50%,transparent 51%) 0 0/120px 90px,radial-gradient(circle at 90% 120%,#3E8FA6 0,transparent 45%),radial-gradient(circle at 10% -20%,#6B4BC8 0,transparent 40%),#0A1430}
+.livecard h2{color:#fff;font-size:clamp(1.3rem,3.6vw,1.9rem)}.livecard p{color:#C9D6E6;margin:6px 0 0;max-width:56ch}
+.livecard .ghost{background:transparent;color:#fff;border-color:#fff}
+.livetag{display:inline-block;background:#E8503A;color:#fff;font-weight:800;font-size:.8rem;letter-spacing:.12em;border-radius:999px;padding:3px 10px;margin-bottom:8px;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.55}}
+/* host lobby */
+.lobby{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:20px}
+@media(max-width:760px){.lobby{grid-template-columns:1fr}}
+.pinbox{background:#fff;color:#0D1B3D;border-radius:22px;padding:18px;text-align:center;box-shadow:0 8px 0 rgba(0,0,0,.35);align-self:start}
+#v-play .pinbox .muted{color:#56657F}
+.jurl{font-weight:700;overflow-wrap:anywhere;font-size:.95rem}.pinlab{margin-top:10px;font-size:.8rem;letter-spacing:.2em;font-weight:700;color:#2A6F84}
+.pin{font-family:"Fredoka";font-weight:700;font-size:clamp(2.6rem,6vw,3.6rem);letter-spacing:.06em;line-height:1.1}
+.qr{display:flex;justify-content:center;margin-top:12px}.qr img,.qr canvas{max-width:100%;height:auto}
+.pls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;min-height:60px}
+.pl{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:2px solid var(--c);border-radius:999px;padding:4px 14px 4px 4px;animation:pop .4s;min-width:0}
+.pl b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lav{width:40px;height:40px;object-fit:contain;display:inline-grid;place-items:center;font-size:1.8rem;line-height:1;border-radius:50%;background:rgba(255,255,255,.15);flex:none}
+.lav.big{width:130px;height:130px;font-size:5rem}
+.pod .lav{width:auto;height:clamp(80px,17vw,150px);aspect-ratio:1;font-size:clamp(3rem,8vw,5.5rem);background:transparent;filter:drop-shadow(0 6px 0 var(--c));animation:bob 2s ease-in-out infinite}
+.lmodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-top:14px}
+#v-play select{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)}#v-play option{color:#0D1B3D}
+#emofx{position:fixed;inset:0;pointer-events:none;z-index:45;overflow:hidden}
+.emo{position:absolute;bottom:-60px;font-size:2.6rem;animation:emoUp 3s ease-out forwards;text-align:center}
+.emo small{display:block;font-size:.75rem;font-family:var(--body);color:#fff;background:rgba(0,0,0,.45);border-radius:8px;padding:0 6px;white-space:nowrap}
+@keyframes emoUp{to{transform:translateY(-75vh) scale(1.3);opacity:0}}
+.lopts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.lopt{position:relative;background:var(--c);color:#fff;border-radius:18px;padding:16px 46px 16px 58px;font-family:"Fredoka";font-weight:700;font-size:clamp(1.1rem,3vw,1.8rem);box-shadow:0 6px 0 rgba(0,0,0,.35);overflow-wrap:anywhere;min-width:0}
+.lopt span{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1.6rem}
+.lopt .cnt{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:1.4rem}
+.lopts.small .lopt{font-size:1.05rem;padding:10px 40px 10px 46px}
+.lopt.dim{opacity:.35}.lopt.right{outline:5px solid #7CFFB2;outline-offset:2px;animation:pop .4s}
+.track{display:flex;flex-direction:column;gap:10px;max-width:900px;margin:0 auto}
+.lane{display:grid;grid-template-columns:minmax(80px,170px) minmax(0,1fr);gap:10px;align-items:center}
+.lname{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lroad{position:relative;height:46px;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.14));border:2px dashed rgba(255,255,255,.22)}
+.lroad::after{content:"🌕";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:1.6rem}
+.rocket{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem;animation:launch 1.3s cubic-bezier(.3,1.2,.5,1) backwards;filter:drop-shadow(0 0 10px var(--c))}
+.rocket small{position:absolute;left:100%;top:50%;transform:translateY(-50%);font-size:.85rem;font-weight:700;margin-left:4px;white-space:nowrap}
+@keyframes launch{from{left:0}}
+.pairs{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:12px}
+.pair{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.08);border-radius:18px;padding:10px;flex-wrap:wrap}
+.pp{text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0}.pp small{color:#7CFFB2}.vs{font-size:1.6rem}
+.cloud{min-height:300px;margin-top:16px}
+.words{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:center;align-items:center;font-family:"Fredoka";font-weight:700}
+.words span{animation:pop .4s;line-height:1.1}
+/* student phone */
+.stu{max-width:520px;margin:0 auto;padding-bottom:96px}
+.slogo{width:90px;display:block;margin:0 auto}
+#v-play .stu label{color:#C9D6E6}
+#v-play .stu input{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3);font-size:1.2rem}
+.avpick{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.avpick button{padding:4px;border-radius:14px;background:rgba(255,255,255,.08);border:2px solid transparent;box-shadow:none;min-width:0}
+.avpick button.on{border-color:var(--gold);background:rgba(244,178,58,.25)}
+.avpick .lav{width:100%;height:auto;aspect-ratio:1;font-size:1.7rem;background:transparent}
+.serr{background:#E8503A;border-radius:12px;padding:8px 12px}
+.sme{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:999px;padding:4px 14px 4px 4px;margin-bottom:14px}
+.sme b{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sscore{font-family:"Fredoka";font-weight:700;font-size:1.3rem;color:var(--gold)}
+.steam{background:var(--c);color:#0D1B3D;border-radius:999px;padding:0 8px;font-weight:700;font-size:.8rem;white-space:nowrap}
+.swait{text-align:center;padding:30px 0;font-size:1.2rem}.orbit{display:inline-block;animation:bob 2s ease-in-out infinite}
+.spin{width:54px;height:54px;border-radius:50%;border:6px solid rgba(255,255,255,.2);border-top-color:var(--gold);margin:0 auto 12px;animation:rot 1s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.sq{text-align:center;color:#AFC0D6;margin:0}
+.sqt{text-align:center;font-family:"Fredoka";font-weight:700;font-size:1.4rem;margin:6px 0 14px;overflow-wrap:anywhere}
+.sopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sopts button{min-height:120px;background:var(--c);color:#fff;border:none;border-radius:20px;font-family:"Fredoka";font-weight:700;font-size:1.15rem;box-shadow:0 6px 0 rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px;overflow-wrap:anywhere;min-width:0}
+.sopts span{font-size:2rem}.sopts button.picked{outline:5px solid #fff;opacity:1}
+.sres{text-align:center;border-radius:24px;padding:24px;margin-top:10px}.sres.ok{background:rgba(34,181,115,.3)}.sres.no{background:rgba(232,80,58,.3)}
+.big-ic{font-size:4rem;line-height:1}
+.pcardS{background:rgba(255,255,255,.08);border-radius:22px;padding:18px;text-align:center}.pcardS.ask{background:rgba(244,178,58,.18)}
+.role{font-family:"Fredoka";font-weight:700;letter-spacing:.06em;color:var(--gold);font-size:1.2rem}
+.rate{background:rgba(255,255,255,.08);border-radius:16px;padding:12px;margin:10px 0;text-align:center}
+.rate div{display:flex;gap:8px;justify-content:center;margin-top:8px;flex-wrap:wrap}.rate button{font-size:1.2rem;border-radius:12px;background:#fff}
+.emobar{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:6px;padding:10px max(10px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));background:rgba(13,27,61,.92);z-index:41}
+.emobar button{font-size:1.6rem;padding:4px 10px;background:rgba(255,255,255,.1);border:none;box-shadow:none;border-radius:12px}
+@media(prefers-reduced-motion:reduce){#v-play::before,.livetag,.rocket,.emo,.orbit,.pod .lav{animation:none!important}}
 </style>
 
 <div class="wrap">
@@ -331,6 +413,7 @@ padding:calc(env(safe-area-inset-top,0px) + 12px) max(16px,env(safe-area-inset-r
       <img class="masc" src="img/mascot.png" alt="Linh vật Languages Time">
       <div class="bubble">Ready to play?</div>
     </div>
+    <div class="livecard"><div><span class="livetag">● LIVE</span><h2>Cả lớp cùng chơi trên điện thoại</h2><p>Giáo viên mở phòng trên máy chiếu hoặc chia sẻ màn hình, học viên quét mã QR để vào. Đua tên lửa, đại chiến hành tinh, cặp đôi giao tiếp, mây từ vựng.</p></div><div class="row"><button class="pri" id="live-host">Mở lớp LIVE</button><button class="ghost" id="live-join">Tôi là học viên</button></div></div>
     <div class="hero">
       <div class="panel a"><h2>Tạo trò chơi từ bài tập</h2><div>Dán câu hỏi, tải file Word / Excel / TXT, hoặc nhờ AI soạn câu hỏi từ tài liệu.</div><div class="row"><button class="pri" id="new-set">+ Bộ câu hỏi mới</button></div></div>
       <div class="panel b"><h2>Trò chuyện với AI</h2><div class="muted">Học viên nói tiếng Anh, AI trả lời, sửa lỗi ngữ pháp và chấm phát âm.</div><div class="row"><button class="sun" data-go="speak">Bắt đầu luyện nói</button></div></div>
@@ -419,7 +502,7 @@ let AC;function beep(f=880,d=.06,v=.12,ty='sine'){try{AC=AC||new(window.AudioCon
 let toastT;function toast(t,ms=3200){const el=$('#toast');el.textContent=t;el.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>el.hidden=true,ms)}
 function modal(html){$('#mbox').className='box';$('#mbox').innerHTML=html;$('#modal').hidden=false}
 function closeModal(){$('#modal').hidden=true}
-function show(v){$$('.view').forEach(x=>x.hidden=x.id!=='v-'+v);stopTimer();window.scrollTo(0,0)}
+function show(v){if(v!=='play'&&H)closeLive();$$('.view').forEach(x=>x.hidden=x.id!=='v-'+v);stopTimer();window.scrollTo(0,0)}
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g){show(g.dataset.go);if(g.dataset.go==='home')renderHome()}});
 $('#go-home').onclick=()=>{show('home');renderHome()};
 
@@ -600,7 +683,7 @@ function openTile(i){const t=G.tiles[i],me=G.teams[G.turn],before=me.score;t.use
     $('#ok').onclick=()=>{me.score+=t.pts;SFX.ding();party();nextTurn(t.pts)};$('#no').onclick=()=>{SFX.buzz();$('#mbox').classList.add('shake');setTimeout(()=>nextTurn(0),450)}};
 }
 function podium(teams,again){stopTimer();const w=[...teams].sort((a,b)=>b.score-a.score);SFX.fan();party({particleCount:160,spread:100});setTimeout(()=>party({particleCount:110,angle:60,origin:{x:0,y:.75}}),300);setTimeout(()=>party({particleCount:110,angle:120,origin:{x:1,y:.75}}),550);
-  P().innerHTML=playHead('Kết quả')+`<h2 class="stitle">${esc(w[0].name)} thắng!</h2><div class="podium">${w.slice(0,3).map((t,i)=>`<div class="pod p${i+1}" style="--c:${t.col}"><img src="${t.av}" alt=""><div class="tn">${esc(t.name)}</div><div class="ts">${t.score}</div><div class="step">${i+1}</div></div>`).join('')}</div>
+  P().innerHTML=playHead('Kết quả')+`<h2 class="stitle">${esc(w[0].name)} thắng!</h2><div class="podium">${w.slice(0,3).map((t,i)=>`<div class="pod p${i+1}" style="--c:${t.col}">${avHTML(t.av)}<div class="tn">${esc(t.name)}</div><div class="ts">${t.score}</div><div class="step">${i+1}</div></div>`).join('')}</div>
   ${w.length>3?`<div class="rest">${w.slice(3).map((t,i)=>`<span>${i+4}. ${esc(t.name)} – ${t.score}</span>`).join('')}</div>`:''}
   <div class="row" style="justify-content:center;gap:14px;margin-top:22px"><button class="big b-gold" id="pagain">Chơi lại</button><button class="big b-teal" data-go="home">Về trang chủ</button></div>`;
   $('#pagain').onclick=again}
@@ -979,6 +1062,156 @@ $('#open-settings').onclick=()=>{modal(`<h2>Cài đặt</h2><p class="muted">AI 
   $('#sv').onclick=()=>{store.set('ea_gkey',$('#gk').value.trim());closeModal();toast('Đã lưu cài đặt')};
   $('#bk').onclick=()=>{const t=sets.map(s=>'# '+s.title+'\n'+s.items.map(x=>x.q+' | '+x.a).join('\n')).join('\n\n');navigator.clipboard?.writeText(t).then(()=>toast('Đã sao chép toàn bộ'),()=>toast('Không sao chép được trên máy này'))}};
 $('#modal').addEventListener('click',e=>{if(e.target.id==='modal'){stopTimer();closeModal()}});
+
+
+/* ===================== LIVE MULTIPLAYER (PeerJS, free, no account) ===================== */
+const LIVE_AV=['img/mascot.png','img/mascot-wave.png','img/m1.png','🚀','👽','🪐','🌟','🦄','🐱','🐼','🦊','🐸'];
+const avHTML=(a,cls='')=>String(a).startsWith('img/')?`<img class="lav ${cls}" src="${a}" alt="">`:`<span class="lav ${cls}">${esc(a)}</span>`;
+const OPT=[['▲','#E8503A'],['◆','#2A9DB5'],['●','#D99A1E'],['■','#22B573']];
+const EMO=['👍','😂','😮','❤️','🔥','👏'];
+const PLANETS=[['Sao Hỏa','#FF7A5C'],['Sao Hải Vương','#3EC1D3'],['Sao Mộc','#F4B23A'],['Sao Kim','#B79BFF']];
+const FOLLOW=['Why?','Can you tell me more?','How do you feel about it?','What about you?','When was that?','Do you agree? Why or why not?'];
+const TALKQ=['What did you do last weekend?','What is your favourite food? Why?','Where would you like to travel?','What do you usually do after school or work?','Who is your best friend? What is he or she like?','What is your favourite film or song?','What would you do with a million dollars?','Describe your dream house.','What do you like to do on rainy days?','What is the best gift you have ever received?','If you could have a superpower, what would it be?','What makes you happy?','What is your favourite place in your city?','Do you prefer the beach or the mountains? Why?','What animal would you like as a pet?','What do you want to be in the future?'];
+const loadPeer=()=>loadLib('https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js','Peer');
+let H=null,ST=null;
+
+/* ---------- HOST (teacher screen) ---------- */
+const act=()=>H?Object.values(H.players).filter(p=>!p.off):[];
+const sendTo=(p,m)=>{try{if(p.conn&&p.conn.open)p.conn.send(m)}catch(e){}};
+const bcast=m=>act().forEach(p=>sendTo(p,m));
+const joinURL=()=>location.origin+location.pathname+'?pin='+H.pin;
+const backLobbyBtn='<button class="ghost" id="lback">Phòng chờ</button>';
+const wireBack=()=>{const b=$('#lback');if(b)b.onclick=()=>{stopTimer();drawLobby()}};
+function closeLive(){if(!H)return;try{bcast({t:'bye'})}catch(e){}const p=H.peer;H=null;stopTimer();setTimeout(()=>{try{p.destroy()}catch(e){}},300)}
+async function hostLive(){show('play');P().innerHTML=playHead('Lớp học LIVE')+'<div class="swait"><div class="spin"></div><p>Đang mở phòng…</p></div>';
+  try{await loadPeer();await loadLib('https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js','QRCode').catch(()=>{})}catch(e){P().innerHTML=playHead('Lớp học LIVE')+'<p class="turn">Không tải được phần kết nối. Kiểm tra mạng rồi bấm lại “Mở lớp LIVE”.</p>';return}
+  const pin=String(100000+Math.random()*900000|0),peer=new Peer('ltgame-'+pin);
+  H={peer,pin,players:{},mode:'lobby',set:sets[0]};
+  peer.on('open',()=>{if(H&&H.peer===peer)drawLobby()});
+  peer.on('error',e=>{if(e.type==='unavailable-id'){try{peer.destroy()}catch(x){}H=null;return hostLive()}if(e.type!=='peer-unavailable')toast('Lỗi kết nối: '+e.type+'. Hãy mở lại phòng nếu học viên không vào được.',6000)});
+  peer.on('disconnected',()=>{try{peer.reconnect()}catch(e){}});
+  peer.on('connection',c=>{c.on('data',d=>onHostMsg(c,d));c.on('close',()=>{const p=H&&H.players[c.peer];if(p){p.off=true;refreshHost()}})});
+}
+function onHostMsg(c,d){if(!H||!d||typeof d!=='object')return;let p=H.players[c.peer];
+  if(d.t==='join'){if(act().length>=80)return;const n=Object.keys(H.players).length,name=String(d.name||'').trim().slice(0,16)||'Player',av=LIVE_AV.includes(d.av)?d.av:pick(LIVE_AV);
+    p=H.players[c.peer]={id:c.peer,conn:c,name,av,score:0,col:TCOL[n%TCOL.length],team:H.tm?n%H.tm.length:0};SFX.pop();
+    if(H.tm)sendTo(p,{t:'team',name:H.tm[p.team][0]||H.tm[p.team].name,col:H.tm[p.team].col});syncPlayer(p);refreshHost();return}
+  if(!p||p.off)return;
+  if(d.t==='emo'&&EMO.includes(d.e)){const now=Date.now();if(now-(p.lastE||0)<800)return;p.lastE=now;floatEmo(d.e,p.name)}
+  else if(d.t==='ans'&&H.mode==='race'&&H.q&&!H.q.revealed&&d.q===H.qi&&!(p.id in H.q.ans)&&d.a>=0&&d.a<H.q.opts.length){H.q.ans[p.id]={a:+d.a,ms:Date.now()-H.q.t0};sendTo(p,{t:'wait',msg:'Đã gửi! Chờ các bạn khác…'});updAns()}
+  else if(d.t==='word'&&H.mode==='cloud'){const w=String(d.w||'').toLowerCase().replace(/\s+/g,' ').trim().slice(0,24);if(!w||(p.words=(p.words||0)+1)>5)return;H.cloud[w]=(H.cloud[w]||0)+1;SFX.pop();drawCloud()}
+  else if(d.t==='rate'&&H.mode==='pair'){const tg=H.players[d.to],s=Math.max(1,Math.min(3,+d.s||1));p.ratedTo=p.ratedTo||{};if(tg&&tg!==p&&!p.ratedTo[tg.id]){p.ratedTo[tg.id]=1;p.rated=true;tg.score+=s*100;tg.stars=(tg.stars||0)+s;SFX.ding();refreshHost()}}
+}
+function syncPlayer(p){if(H.mode==='race'&&H.q&&!H.q.revealed)sendTo(p,{t:'q',qi:H.qi,n:H.qs.length,q:H.q.it.q,opts:H.q.opts});
+  else if(H.mode==='cloud'&&H.cprompt)sendTo(p,{t:'cloud',prompt:H.cprompt});else sendTo(p,{t:'wait',msg:'Bạn đã vào lớp! Nhìn lên màn hình nhé.'})}
+function refreshHost(){if(!H)return;if(H.mode==='lobby')drawLobby();else if(H.mode==='pair'){const el=$('#v-play .pairs');if(el)el.innerHTML=pairsInner()}else if(H.mode==='race')updAns(true)}
+function floatEmo(e,name){let fx=$('#emofx');if(!fx){fx=document.createElement('div');fx.id='emofx';P().appendChild(fx)}const s=document.createElement('div');s.className='emo';s.style.left=(4+Math.random()*88)+'%';s.innerHTML=`${e}<small>${esc(name)}</small>`;fx.appendChild(s);setTimeout(()=>s.remove(),3000)}
+function drawLobby(){if(!H)return;H.mode='lobby';H.tm=null;const ps=act();bcast({t:'wait',msg:'Bạn đã vào lớp! Nhìn lên màn hình nhé.'});
+  P().innerHTML=playHead('Lớp học LIVE')+`<div class="lobby"><div class="pinbox"><div class="muted">Mở trên điện thoại hoặc quét mã QR</div><div class="jurl">${esc(joinURL().replace(/^https?:\/\//,''))}</div><div class="pinlab">MÃ PHÒNG</div><div class="pin">${H.pin.slice(0,3)} ${H.pin.slice(3)}</div><div id="qr" class="qr"></div></div>
+  <div class="lside"><h2 class="stitle" style="margin-top:0">${ps.length} học viên trong phòng</h2><div class="pls">${ps.map(p=>`<div class="pl" style="--c:${p.col}">${avHTML(p.av)}<b>${esc(p.name)}</b></div>`).join('')||'<p class="muted">Đang chờ học viên vào… Học viên có thể bấm biểu tượng cảm xúc, nó sẽ bay lên màn hình này.</p>'}</div>
+  <label for="lset" style="color:#C9D6E6">Bộ câu hỏi dùng cho trò chơi</label><select id="lset">${sets.map((s,i)=>`<option value="${i}" ${s===H.set?'selected':''}>${esc(s.title)} (${s.items.length} câu)</option>`).join('')}</select>
+  <div class="lmodes"><button class="mode k0" data-lm="race"><span class="mi">🚀</span><b>Đua tên lửa</b><small>Mỗi bạn trả lời trên điện thoại. Đúng và nhanh thì tên lửa bay xa hơn!</small></button>
+  <button class="mode k1" data-lm="team"><span class="mi">🪐</span><b>Đại chiến hành tinh</b><small>Chia đội tự động, cả đội cùng góp điểm để giành chiến thắng.</small></button>
+  <button class="mode k2" data-lm="pair"><span class="mi">🗣️</span><b>Cặp đôi giao tiếp</b><small>Ghép cặp ngẫu nhiên, hỏi đáp tiếng Anh với nhau rồi chấm sao cho bạn.</small></button>
+  <button class="mode k0" data-lm="cloud"><span class="mi">☁️</span><b>Mây từ vựng</b><small>Cả lớp gửi từ tiếng Anh, mây chữ lớn dần trên màn hình.</small></button></div></div></div>`;
+  try{new QRCode($('#qr'),{text:joinURL(),width:180,height:180,colorDark:'#0D1B3D',colorLight:'#ffffff'})}catch(e){$('#qr').hidden=true}
+  $('#lset').onchange=e=>H.set=sets[+e.target.value];
+  $$('#v-play [data-lm]').forEach(b=>b.onclick=()=>{if(!act().length)return toast('Chưa có học viên nào trong phòng');SFX.pop();({race:()=>startRace(false),team:()=>startRace(true),pair:startPair,cloud:startCloud})[b.dataset.lm]()});
+}
+/* race (solo or team) */
+function optsFor(it,s){const all=[...new Set(s.items.map(x=>x.a))];return all.length<=4?shuffle(all):shuffle([it.a,...shuffle(all.filter(a=>a!==it.a)).slice(0,3)])}
+function teamScores(){return H.tm.map((t,i)=>{const m=act().filter(p=>p.team===i);return{...t,score:m.length?Math.round(m.reduce((a,p)=>a+p.score,0)/m.length):0,n:m.length}})}
+function startRace(team){const ps=act();H.mode='race';H.qs=shuffle(H.set.items).slice(0,Math.min(10,H.set.items.length));H.qi=-1;H.q=null;ps.forEach(p=>{p.score=0;p.streak=0});
+  if(!team){H.tm=null;return nextQ()}
+  const n=Math.min(4,Math.max(2,Math.round(ps.length/3)));H.tm=PLANETS.slice(0,n).map(([name,col])=>({name,col,av:'img/mascot.png'}));
+  shuffle(ps).forEach((p,i)=>{p.team=i%n;sendTo(p,{t:'team',name:H.tm[p.team].name,col:H.tm[p.team].col})});
+  P().innerHTML=playHead('Đại chiến hành tinh',backLobbyBtn)+`<h2 class="stitle">Các đội đã sẵn sàng!</h2><div class="pairs">${H.tm.map((t,i)=>`<div class="pair" style="flex-direction:column;border:3px solid ${t.col}"><h3 style="color:${t.col}">🪐 ${t.name}</h3><div class="pls" style="justify-content:center;min-height:0">${ps.filter(p=>p.team===i).map(p=>`<div class="pl" style="--c:${t.col}">${avHTML(p.av)}<b>${esc(p.name)}</b></div>`).join('')}</div></div>`).join('')}</div>
+  <p class="turn">Điểm đội = điểm trung bình của các thành viên. Ai cũng phải cố gắng!</p><div class="row" style="justify-content:center"><button class="big b-gold" id="tgo2">▶ Bắt đầu</button></div>`;
+  $('#tgo2').onclick=nextQ;wireBack()}
+function nextQ(){H.qi++;if(H.qi>=H.qs.length)return endLiveGame();const it=H.qs[H.qi],opts=optsFor(it,H.set);H.q={it,opts,ans:{},t0:Date.now(),dur:20000,revealed:false};H.lastT=0;
+  bcast({t:'q',qi:H.qi,n:H.qs.length,q:it.q,opts});SFX.whoosh();
+  P().innerHTML=playHead(`Câu ${H.qi+1}/${H.qs.length}`,backLobbyBtn)+`<div class="qcard flat">${qi(H.set,it)}<div class="q-big">${esc(it.q)}</div><div class="tleft" id="lt" style="color:#fff;text-align:center">20</div><div class="bar"><i id="lbar" style="width:100%"></i></div></div>
+  <div class="lopts">${opts.map((o,i)=>`<div class="lopt" style="--c:${OPT[i][1]}"><span>${OPT[i][0]}</span>${esc(o)}</div>`).join('')}</div>
+  <div class="row" style="justify-content:center;margin-top:14px;gap:12px"><span class="pts" id="lans">0/${act().length} đã trả lời</span><button class="big b-gold" id="lrv">Xem đáp án</button></div>`;
+  $('#lrv').onclick=reveal;wireBack();stopTimer();
+  timer=setInterval(()=>{if(!H||!H.q)return stopTimer();const left=Math.max(0,H.q.dur-(Date.now()-H.q.t0)),sec=Math.ceil(left/1000);const t=$('#lt');if(t)t.textContent=sec;const b=$('#lbar');if(b)b.style.width=left/H.q.dur*100+'%';if(sec<=5&&sec>0&&sec!==H.lastT){H.lastT=sec;beep(990,.05)}if(left<=0)reveal()},200)}
+function updAns(quiet){if(!H.q||H.q.revealed)return;const n=Object.keys(H.q.ans).length,t=act().length,e=$('#lans');if(e)e.textContent=n+'/'+t+' đã trả lời';if(!quiet)SFX.pop();if(t&&n>=t)reveal()}
+function reveal(){const q=H&&H.q;if(!q||q.revealed)return;q.revealed=true;stopTimer();const ci=q.opts.indexOf(q.it.a),cnt=q.opts.map(()=>0);
+  act().forEach(p=>{const a=q.ans[p.id];let g=0;if(a){cnt[a.a]++;if(a.a===ci){p.streak=(p.streak||0)+1;g=Math.round(500+500*Math.max(0,1-a.ms/q.dur))+(p.streak>=3?100:0);p.score+=g}else p.streak=0}else p.streak=0;p.last=g});
+  const rank=[...act()].sort((a,b)=>b.score-a.score);act().forEach(p=>sendTo(p,{t:'res',ok:p.last>0,g:p.last,score:p.score,rank:rank.indexOf(p)+1,of:rank.length,correct:q.it.a,streak:p.streak}));
+  SFX.ding();party({particleCount:90});
+  const lanes=H.tm?teamScores().sort((a,b)=>b.score-a.score):rank.slice(0,8),top=Math.max(1,...lanes.map(l=>l.score));
+  P().innerHTML=playHead(`Câu ${H.qi+1}/${H.qs.length}`,backLobbyBtn)+`<div class="lopts small">${q.opts.map((o,i)=>`<div class="lopt ${i===ci?'right':'dim'}" style="--c:${OPT[i][1]}"><span>${OPT[i][0]}</span>${esc(o)}<b class="cnt">${cnt[i]}</b></div>`).join('')}</div>
+  <h2 class="stitle" style="font-size:1.6rem">${H.tm?'🪐 Đại chiến hành tinh':'🚀 Đường đua tên lửa'}</h2><div class="track">${lanes.map((l,i)=>`<div class="lane"><div class="lname">${i+1}. ${esc(l.name)}${!H.tm&&l.streak>=3?' 🔥':''}</div><div class="lroad"><div class="rocket" style="--c:${l.col};left:${Math.round(l.score/top*86)}%">${H.tm?'🪐':'🚀'}<small>${l.score}</small></div></div></div>`).join('')}</div>
+  <div class="row" style="justify-content:center;margin-top:16px"><button class="big b-gold" id="lnx">${H.qi+1<H.qs.length?'Câu tiếp →':'Xem kết quả'}</button></div>`;
+  $('#lnx').onclick=nextQ;wireBack()}
+function sendRanks(){const r=[...act()].sort((a,b)=>b.score-a.score);r.forEach((p,i)=>sendTo(p,{t:'end',rank:i+1,of:r.length,score:p.score}))}
+function endLiveGame(){stopTimer();H.mode='end';sendRanks();podium(H.tm?teamScores():act().map(p=>({name:p.name,score:p.score,av:p.av,col:p.col})),drawLobby)}
+/* pair talk */
+function startPair(){H.mode='pair';H.tm=null;const ps=shuffle(act());act().forEach(p=>{p.score=0;p.stars=0});H.pairs=[];
+  for(let i=0;i<ps.length;i+=2){const g=ps.slice(i,i+2);if(g.length===1&&H.pairs.length)H.pairs[H.pairs.length-1].push(g[0]);else H.pairs.push(g)}
+  H.round=0;H.pq=shuffle(H.set.items);H.tq=shuffle(TALKQ);nextPairRound()}
+function pairsInner(){return H.pairs.map(g=>`<div class="pair">${g.map(p=>`<div class="pp">${avHTML(p.av)}<b>${esc(p.name)}</b><small>${p.rated?'đã chấm ✓':'&nbsp;'}${p.stars?' ⭐'+p.stars:''}</small></div>`).join('<span class="vs">💬</span>')}</div>`).join('')}
+function nextPairRound(){H.round++;stopTimer();act().forEach(p=>{p.rated=false;p.ratedTo={}});
+  H.pairs.forEach((g,gi)=>{const talk=H.round%2===0,it=talk?{q:H.tq[(H.round+gi)%H.tq.length],a:''}:H.pq[(H.round*3+gi)%H.pq.length],asker=g[(H.round-1)%g.length];
+    g.forEach(p=>{const others=g.filter(x=>x!==p);sendTo(p,{t:'pair',ask:p===asker,partners:others.map(x=>({id:x.id,name:x.name})),q:it.q,a:it.a,follow:pick(FOLLOW),solo:g.length===1})})});
+  SFX.whoosh();
+  P().innerHTML=playHead('Cặp đôi giao tiếp · vòng '+H.round,backLobbyBtn)+`<p class="turn">Nhìn điện thoại: người <b>HỎI</b> đọc câu hỏi, người kia <b>TRẢ LỜI</b> bằng tiếng Anh, rồi hỏi thêm một câu. Hết giờ thì chấm sao cho nhau!</p>
+  <div class="tleft" id="pt" style="text-align:center;color:#fff;font-size:3rem">90</div><div class="pairs">${pairsInner()}</div>
+  <div class="row" style="justify-content:center;gap:12px;margin-top:16px"><button class="big b-teal" id="prate">Chấm sao ngay</button><button class="big b-gold" id="pnext">Vòng tiếp (đổi vai) →</button><button class="big b-ghost" id="pend">Xem kết quả</button></div>`;
+  let left=90;timer=setInterval(()=>{left--;const e=$('#pt');if(e)e.textContent=left>0?left:'Chấm sao!';if(left<=5&&left>0)beep(990,.05);if(left<=0){stopTimer();askRate()}},1000);
+  $('#prate').onclick=()=>{stopTimer();askRate()};$('#pnext').onclick=nextPairRound;$('#pend').onclick=endLiveGame;wireBack()}
+function askRate(){bcast({t:'rateNow'});SFX.ding();const e=$('#pt');if(e)e.textContent='Chấm sao cho bạn!'}
+/* word cloud */
+function startCloud(){H.mode='cloud';H.tm=null;H.cloud={};H.cprompt='';act().forEach(p=>p.words=0);
+  P().innerHTML=playHead('Mây từ vựng',backLobbyBtn)+`<div class="row" style="justify-content:center;gap:10px"><input id="cprompt" placeholder="Ví dụ: Words about the beach" style="max-width:420px"><button class="big b-gold" id="csend">Gửi cho cả lớp</button></div><div class="cloud" id="cloud"><p class="turn">Gõ chủ đề rồi bấm “Gửi cho cả lớp”. Mỗi bạn gửi được tối đa 5 từ.</p></div>`;
+  $('#csend').onclick=()=>{H.cprompt=$('#cprompt').value.trim()||'Say a word you learned today!';H.cloud={};act().forEach(p=>p.words=0);bcast({t:'cloud',prompt:H.cprompt});SFX.whoosh();drawCloud()};wireBack()}
+function drawCloud(){const el=$('#cloud');if(!el||!H)return;const ent=Object.entries(H.cloud).slice(0,90),mx=Math.max(1,...ent.map(e=>e[1])),C=['#F4B23A','#3EC1D3','#FF8A9A','#B79BFF','#7ED957','#FFFFFF'];
+  el.innerHTML=(H.cprompt?`<h2 class="stitle" style="font-size:1.5rem">${esc(H.cprompt)}</h2>`:'')+`<div class="words">${ent.map(([w,n],i)=>`<span style="font-size:${(1+n/mx*2.6).toFixed(2)}rem;color:${C[i%6]}">${esc(w)}</span>`).join('')||'<p class="muted">Đang chờ các bạn gửi từ…</p>'}</div>`}
+
+/* ---------- STUDENT (phone) ---------- */
+function sv(html,emo=true){P().innerHTML=`<div class="stu">${html}</div>${emo?`<div class="emobar">${EMO.map(e=>`<button data-e="${e}" aria-label="Gửi ${e}">${e}</button>`).join('')}</div>`:''}`;
+  $$('.emobar [data-e]').forEach(b=>b.onclick=()=>{if(ST&&ST.conn&&ST.conn.open){ST.conn.send({t:'emo',e:b.dataset.e});b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop')}})}
+const meBar=()=>`<div class="sme">${avHTML(ST.av)}<b>${esc(ST.name)}</b>${ST.team?`<span class="steam" style="--c:${ST.team.col}">${esc(ST.team.name)}</span>`:''}<span class="sscore">${ST.score||0}</span></div>`;
+function joinForm(pin,err){show('play');const nm=store.get('ea_lname',''),av0=store.get('ea_lav',LIVE_AV[0]);let av=LIVE_AV.includes(av0)?av0:LIVE_AV[0];
+  P().innerHTML=`<div class="stu"><img src="img/logo.png" class="slogo" alt="Languages Time"><h2 class="stitle">Vào lớp LIVE</h2>${err?`<p class="serr">${esc(err)}</p>`:''}
+  <label for="jpin">Mã phòng (giáo viên cho trên màn hình)</label><input id="jpin" inputmode="numeric" maxlength="7" value="${esc(pin||'')}" placeholder="6 chữ số">
+  <label for="jname">Tên của bạn</label><input id="jname" maxlength="16" value="${esc(nm)}" placeholder="Ví dụ: Minh Anh">
+  <label>Chọn nhân vật</label><div class="avpick">${LIVE_AV.map(a=>`<button data-av="${esc(a)}" class="${a===av?'on':''}" aria-label="Nhân vật">${avHTML(a)}</button>`).join('')}</div>
+  <button class="big b-gold" id="jgo" style="width:100%;margin-top:18px">Vào lớp 🚀</button>${ST?'':'<button class="ghost" data-go="home" style="width:100%;margin-top:10px">Về trang chủ</button>'}</div>`;
+  $$('.avpick [data-av]').forEach(b=>b.onclick=()=>{av=b.dataset.av;$$('.avpick button').forEach(x=>x.classList.toggle('on',x===b))});
+  $('#jgo').onclick=()=>{const p=$('#jpin').value.replace(/\D/g,''),n=$('#jname').value.trim();if(p.length!==6)return toast('Mã phòng gồm 6 chữ số');if(!n)return toast('Hãy nhập tên của bạn');store.set('ea_lname',n);store.set('ea_lav',av);beep(1,.01,.001);connectStudent(p,n,av)}}
+async function connectStudent(pin,name,av){sv('<div class="swait"><div class="spin"></div><p>Đang vào lớp…</p></div>',false);
+  try{await loadPeer()}catch(e){return joinForm(pin,'Không tải được phần kết nối, hãy kiểm tra mạng.')}
+  if(ST&&ST.peer)try{ST.peer.destroy()}catch(e){}
+  const peer=new Peer();ST={peer,name,av,pin,score:0};let done=false;
+  const fail=m=>{if(done)return;done=true;try{peer.destroy()}catch(e){}joinForm(pin,m)};
+  const to=setTimeout(()=>fail('Không vào được phòng. Kiểm tra mã phòng, hoặc thử đổi sang mạng 4G/Wi-Fi khác.'),15000);
+  peer.on('error',e=>{if(ST&&ST.ok)return;clearTimeout(to);fail(e.type==='peer-unavailable'?'Không tìm thấy phòng '+pin+'. Kiểm tra lại mã phòng nhé.':'Lỗi kết nối ('+e.type+'). Thử lại sau ít giây.')});
+  peer.on('open',()=>{const c=peer.connect('ltgame-'+pin,{reliable:true});ST.conn=c;
+    c.on('open',()=>{clearTimeout(to);done=true;ST.ok=true;c.send({t:'join',name,av})});c.on('data',onStuMsg);
+    c.on('close',()=>{if(!ST||!ST.ok)return;ST.ok=false;sv('<div class="swait"><p>Mất kết nối với lớp.</p><button class="big b-gold" id="rj">Vào lại</button></div>',false);$('#rj').onclick=()=>connectStudent(pin,name,av)})})}
+function onStuMsg(d){if(!d||typeof d!=='object'||!ST)return;
+  switch(d.t){
+  case 'wait':sv(meBar()+`<div class="swait"><div class="orbit">${avHTML(ST.av,'big')}</div><p>${esc(d.msg||'')}</p></div>`);break;
+  case 'team':ST.team={name:String(d.name),col:String(d.col)};sv(meBar()+`<div class="swait"><p>Bạn thuộc đội</p><h2 class="stitle" style="color:${esc(ST.team.col)}">🪐 ${esc(ST.team.name)}</h2><p>Nhìn lên màn hình nhé!</p></div>`);SFX.whoosh();break;
+  case 'q':if(!Array.isArray(d.opts))break;sv(meBar()+`<p class="sq">Câu ${d.qi+1}/${d.n}</p><p class="sqt">${esc(d.q)}</p><div class="sopts">${d.opts.map((o,i)=>`<button style="--c:${OPT[i][1]}" data-a="${i}"><span>${OPT[i][0]}</span>${esc(o)}</button>`).join('')}</div>`);
+    $$('.sopts [data-a]').forEach(b=>b.onclick=()=>{ST.conn.send({t:'ans',q:d.qi,a:+b.dataset.a});SFX.pop();$$('.sopts button').forEach(x=>{x.disabled=true;x.classList.toggle('picked',x===b)})});break;
+  case 'res':ST.score=d.score;sv(meBar()+`<div class="sres ${d.ok?'ok':'no'}"><div class="big-ic">${d.ok?'✓':'✗'}</div><h2>${d.ok?'Chính xác! +'+d.g:'Chưa đúng rồi'}</h2>${d.ok?'':`<p>Đáp án: <b>${esc(d.correct)}</b></p>`}${d.streak>=3?`<p>🔥 Chuỗi ${d.streak} câu đúng liên tiếp!</p>`:''}<p>Bạn đang hạng <b>${d.rank}/${d.of}</b></p></div>`);if(d.ok){SFX.ding();party({particleCount:70})}else SFX.buzz();break;
+  case 'pair':ST.pair=d;const ps=(d.partners||[]).map(x=>esc(x.name)).join(' & ');
+    sv(meBar()+(d.solo?'<div class="swait"><p>Vòng này bạn nghỉ, cổ vũ các bạn nhé!</p></div>':`<div class="pcardS ${d.ask?'ask':''}"><div class="role">${d.ask?'BẠN LÀ NGƯỜI HỎI':'BẠN LÀ NGƯỜI TRẢ LỜI'}</div><p>Bạn cùng cặp: <b>${ps}</b></p>
+    ${d.ask?`<p class="sqt">“${esc(d.q)}”</p><button class="big b-ghost" id="say">🔊 Nghe cách đọc</button>${d.a?`<p class="muted">Đáp án gợi ý: ${esc(d.a)}</p>`:''}<p>Sau đó hỏi thêm: <b>${esc(d.follow)}</b></p>`:`<p>Lắng nghe câu hỏi của bạn rồi trả lời bằng tiếng Anh, nói thành câu đầy đủ nhé!</p><p class="muted">Chưa nghe rõ? Hãy nói: “Sorry, can you say that again?”</p>`}</div>`));
+    if($('#say'))$('#say').onclick=()=>speak(d.q,true);SFX.whoosh();break;
+  case 'rateNow':if(!ST.pair||ST.pair.solo)break;const rated={};
+    sv(meBar()+`<h2 class="stitle" style="font-size:1.5rem">Chấm sao cho bạn</h2>${(ST.pair.partners||[]).map(x=>`<div class="rate"><b>${esc(x.name)}</b><div>${[1,2,3].map(s=>`<button data-to="${esc(x.id)}" data-s="${s}">${'⭐'.repeat(s)}</button>`).join('')}</div></div>`).join('')}<p class="muted" style="text-align:center">⭐ cố gắng · ⭐⭐ tốt · ⭐⭐⭐ xuất sắc</p>`);
+    $$('.rate [data-s]').forEach(b=>b.onclick=()=>{if(rated[b.dataset.to])return;rated[b.dataset.to]=1;ST.conn.send({t:'rate',to:b.dataset.to,s:+b.dataset.s});b.parentNode.innerHTML='<b>Đã chấm ✓</b>';SFX.pop()});break;
+  case 'cloud':{let left=5;sv(meBar()+`<p class="sqt">${esc(d.prompt)}</p><div class="row" style="flex-wrap:nowrap"><input id="cw" maxlength="24" placeholder="Gõ một từ tiếng Anh" style="flex:1;min-width:0"><button class="big b-gold" id="cws">Gửi</button></div><p class="muted" id="cwl">Bạn còn 5 lượt gửi</p>`);
+    const sendW=()=>{const w=$('#cw').value.trim();if(!w||left<=0)return;ST.conn.send({t:'word',w});left--;$('#cw').value='';$('#cwl').textContent=left?'Bạn còn '+left+' lượt gửi':'Bạn đã gửi đủ 5 từ!';SFX.pop()};$('#cws').onclick=sendW;$('#cw').onkeydown=e=>{if(e.key==='Enter')sendW()};break}
+  case 'end':ST.score=d.score;sv(meBar()+`<div class="sres ok"><div class="big-ic">${d.rank<=3?['🥇','🥈','🥉'][d.rank-1]:'🚀'}</div><h2>Hạng ${d.rank}/${d.of}</h2><p>${d.score} điểm</p></div>`);if(d.rank<=3){SFX.fan();party({particleCount:150})}break;
+  case 'bye':ST.ok=false;sv('<div class="swait"><p>Giáo viên đã đóng phòng. Hẹn gặp lại!</p></div>',false);break;
+  }}
+$('#live-host').onclick=()=>hostLive();$('#live-join').onclick=()=>joinForm('');
+{const pin=new URLSearchParams(location.search).get('pin');if(pin!==null)joinForm(pin.replace(/\D/g,'').slice(0,6))}
 
 renderHome();
 </script>
